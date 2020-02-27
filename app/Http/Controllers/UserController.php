@@ -28,7 +28,7 @@ class UserController extends Controller
         $res = DB::table('users')->where($data)->first();
 
         if($res != null){
-            \request()->session()->put('loggedin',$res->id);
+            \request()->session()->put('loggedin',$res->user_id);
               return redirect('dashboard/quote');
         } else {
             $message = 'error|Login Failed..!! Enter Correct Email and Password...!!!';
