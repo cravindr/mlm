@@ -51,7 +51,7 @@ class UserController extends Controller
             if($res == 1){
                //$send = $this->forgotEmail($check->email,$code);
                     //if($send == 1){
-                        $request->session()->put('reset_id', $check->id);
+                        $request->session()->put('reset_id', $check->user_id);
                         return redirect('/forgotverify');
                     //} else {
                         //$message = 'error| Error Sending Reset Code... Try again';
