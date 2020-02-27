@@ -30,16 +30,6 @@ Route::group(['middleware' => ['guest']], function () {
         Route::post('gettiles', 'TilesController@GetTiles');
         Route::post('usersrecords', 'TilesController@UserWiseQuote');
 
-        //Quote
-        Route::get('purchaseorder', 'DashboardController@purchaseorder');
-        Route::get('quote/print/{id}', 'DashboardController@QuotePrint');
-        Route::post('quote/view', 'DashboardController@QuoteView');
-        Route::get('quoteserverside', 'DashboardController@QuoteServerSide');
-
-        //Purchase Order
-        Route::get('quote', 'DashboardController@quote');
-        Route::get('purchaseorderserverside', 'DashboardController@PurchaseOrderServerSide');
-
         //Profile
         Route::get('profile', 'DashboardController@EditProfile');
         Route::post('profileupdate', 'DashboardController@Update');
@@ -53,5 +43,6 @@ Route::group(['middleware' => ['guest']], function () {
         Route::post('users/update', 'UserController@Update');
         Route::post('users/delete', 'UserController@UserDelete');
         Route::get('userserverside', 'UserController@UsersServerSide');
+
     });
 });

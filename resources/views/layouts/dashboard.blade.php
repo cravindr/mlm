@@ -18,7 +18,7 @@
     <aside class="menu-sidebar d-none d-lg-block">
         <div class="logo">
             <a href="#">
-                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="Roghini Minerva Engineers"/>
+                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="MLM"/>
             </a>
         </div>
         <div class="menu-sidebar__content js-scrollbar1">
@@ -39,6 +39,21 @@
                     <li class="{{ Request::segment(2) == 'users' ? 'active' : '' }}">
                         <a href="{{ URL::to('/dashboard/users') }}">
                             <i class="fa fa-user-plus"></i>Users</a>
+                    </li>
+                    <li class="has-sub">
+                        <a class="js-arrow open" href="#">
+                            <i class="fas fa-copy"></i>Pages</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: none;">
+                            <li>
+                                <a href="login.html">Login</a>
+                            </li>
+                            <li>
+                                <a href="register.html">Register</a>
+                            </li>
+                            <li>
+                                <a href="forget-pass.html">Forget Password</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
