@@ -28,7 +28,7 @@ class UserController extends Controller
         $res = DB::table('users')->where($data)->first();
 
         if($res != null){
-            \request()->session()->put('loggedin',$res->id);
+            \request()->session()->put('loggedin',$res->user_id);
               return redirect('dashboard/quote');
         } else {
             $message = 'error|Login Failed..!! Enter Correct Email and Password...!!!';
@@ -51,7 +51,7 @@ class UserController extends Controller
             if($res == 1){
                //$send = $this->forgotEmail($check->email,$code);
                     //if($send == 1){
-                        $request->session()->put('reset_id', $check->id);
+                        $request->session()->put('reset_id', $check->user_id);
                         return redirect('/forgotverify');
                     //} else {
                         //$message = 'error| Error Sending Reset Code... Try again';
