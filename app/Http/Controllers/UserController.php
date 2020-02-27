@@ -29,7 +29,7 @@ class UserController extends Controller
 
         if($res != null){
             \request()->session()->put('loggedin',$res->user_id);
-              return redirect('dashboard/quote');
+              return redirect('dashboard');
         } else {
             $message = 'error|Login Failed..!! Enter Correct Email and Password...!!!';
         }
@@ -81,7 +81,7 @@ class UserController extends Controller
         $code = $request->input('reset_code');
         $reset_id = $request->session()->get('reset_id');
         $data = array(
-            'id' => $reset_id,
+            'user_id' => $reset_id,
             'reset_code' => $code
         );
         $res = DB::table('users')->where($data)->first();
@@ -100,9 +100,9 @@ class UserController extends Controller
 
             if(isset($reset_id)){
                 $newpassword = $request->input('cpass');
-                $res = DB::table('users')->where('id', $reset_id)->update(['password' => md5($newpassword)]);
+                $res = DB::table('users')->where('user_id', $reset_id)->update(['password' => md5($newpassword)]);
                     if($res == 1){
-                        DB::table('users')->where('id', $reset_id)->update(['reset_code' => '']);
+                        DB::table('users')->where('user_id', $reset_id)->update(['reset_code' => '']);
                         $request->session()->forget('reset_id');
                         $message = 'message| Password Reset Successfully...';
                         return redirect('/')->with('message', $message);
@@ -192,7 +192,7 @@ class UserController extends Controller
     public function UserEdit()
     {
         $id = \request()->id;
-        $res = DB::table('users')->where('id', $id)->first();
+        $res = DB::table('users')->where('user_id', $id)->first();
         echo json_encode($res);
     }
 
@@ -201,7 +201,7 @@ class UserController extends Controller
         $req = \request()->all();
         $id = $req['uid'];
         $pass = md5($req['pass']);
-        $rs = DB::table('users')->where(['id' => $id, 'password' => $pass ]);
+        $rs = DB::table('users')->where(['user_id' => $id, 'password' => $pass ]);
 
         $data = array(
             'name' => $req['name'],
@@ -213,7 +213,7 @@ class UserController extends Controller
             $data['password'] = $pass;
         }
 
-        $res = DB::table('users')->where('id', $id)->update($data);
+        $res = DB::table('users')->where('user_id', $id)->update($data);
 
         if($res == 1){
             $message = 'message|User Updated Successfull...';
@@ -227,7 +227,7 @@ class UserController extends Controller
     public function UserDelete()
     {
         $id = \request()->id;
-        $res = DB::table('users')->delete('id',$id);
+        $res = DB::table('users')->delete('user_id',$id);
        echo $res;
     }
 

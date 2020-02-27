@@ -98,7 +98,7 @@ class DashboardController extends Controller
     {
         $log = request()->session()->get('loggedin');
 
-        return DB::table('users')->where('id',$log)->first();
+        return DB::table('users')->where('user_id',$log)->first();
     }
 
     public function quote()
