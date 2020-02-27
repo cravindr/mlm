@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="login-checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember">Remember Me1
+                                        <input type="checkbox" name="remember">Remember Me
                                     </label>
                                     <label>
                                         <a href="{{ URL::to('/forgotpassword') }}">Forgotten Password?</a>
