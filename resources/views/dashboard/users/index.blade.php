@@ -45,7 +45,7 @@
                 "serverSide": true,
                 ajax: '{{ URL::to('/dashboard/userserverside') }}',
                 columns: [
-                    { data: 'id' },
+                    { data: 'user_id' },
                     { data: 'name' },
                     { data: 'email' },
                     {

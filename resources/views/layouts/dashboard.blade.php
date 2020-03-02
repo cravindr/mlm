@@ -7,7 +7,7 @@
         {{--<link href="{{ asset('assets/vendor/DataTables/DataTables-1.10.18/css/dataTables.bootstrap.css') }}" rel="stylesheet" media="all">--}}
     @endif
 
-    @if(Request::segment(2) == 'passwordchange' && Request::segment(2) == 'users')
+    @if(Request::segment(2) == 'passwordchange' || Request::segment(2) == 'users' || Request::segment(2) == 'coupon' )
         <link rel="stylesheet" href="{{ asset('assets/vendor/validation-engine-master/css/validationEngine.jquery.css') }}">
     @endif
 @endsection
@@ -42,17 +42,21 @@
                     </li>
                     <li class="has-sub">
                         <a class="js-arrow open" href="#">
-                            <i class="fas fa-copy"></i>Pages</a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: none;">
-                            <li>
-                                <a href="login.html">Login</a>
+                            <i class="fas fa-copy"></i>Coupon</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'coupon' ? 'block' : 'none' }};">
+                            <li class="{{ (Request::segment(2) == 'coupon' && Request::segment(3)=='') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/coupon') }}">
+                                    <i class="fa fa-plus"></i>New</a>
                             </li>
-                            <li>
-                                <a href="register.html">Register</a>
+                            <li class="{{ (Request::segment(2) == 'coupon' && Request::segment(3) == 'list') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/coupon/list') }}">
+                                    <i class="fa fa-list"></i>List</a>
                             </li>
                             <li>
                                 <a href="forget-pass.html">Forget Password</a>
                             </li>
+
+
                         </ul>
                     </li>
                 </ul>

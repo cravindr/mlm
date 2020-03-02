@@ -21,6 +21,8 @@ Route::get('forgotverify', 'UserController@forgotVerify');
 Route::get('forgotverifycheck', 'UserController@forgotVerifycheck');
 Route::post('newpassupdate', 'UserController@ResetPasswordUpdate');
 
+
+
 // Authendicated Route
 Route::group(['middleware' => ['guest']], function () {
     Route::get('dashboard', 'DashboardController@index');
@@ -44,5 +46,23 @@ Route::group(['middleware' => ['guest']], function () {
         Route::post('users/delete', 'UserController@UserDelete');
         Route::get('userserverside', 'UserController@UsersServerSide');
 
+
+
+        //coupon
+        Route::get('coupon', 'CouponController@index');
+        Route::get('coupon/list', 'CouponController@list');
+        Route::post('coupon/save', 'CouponController@save');
+        Route::get('couponserverside', 'CouponController@CouponServerSide');
+        Route::post('coupon/deactivate', 'CouponController@CouponDeactivate');
+        Route::post('coupon/activate', 'CouponController@CouponActivate');
+        Route::post('coupon/delete', 'CouponController@CouponDelete');
+        Route::post('coupon/couponedit', 'CouponController@CouponEdit');
+        Route::post('coupon/updatesave', 'CouponController@UpdateSave');
+
+
+
+
     });
 });
+
+
