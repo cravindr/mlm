@@ -60,6 +60,11 @@ Route::group(['middleware' => ['guest']], function () {
         Route::post('coupon/updatesave', 'CouponController@UpdateSave');
 
 
+        //Node
+        Route::get('node/aadharcheck', 'NodeController@AadharCheack');
+        Route::get('node/create', 'NodeController@Create');
+
+
 
 
     });
