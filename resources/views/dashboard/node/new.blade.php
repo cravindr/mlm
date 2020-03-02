@@ -16,7 +16,7 @@
                             <label for="u_name">No of Coupons</label>
                             {{--<input type="text" name="u_id" id="u_id">--}}
                             <input type="hidden" id="checkaadhar" value="{{ URL::to('dashboard/node/aadharcheck') }}">
-                            <input type="text" name="ncoupon" id="ncoupon" class="form-control"
+                            <input type="text" name="ncoupon" id="ncoupon" class="form-control validate[required]"
                                    value="" placeholder="Number of Coupons">
                         </div>
                         <div class="form-group">
@@ -25,6 +25,18 @@
                             <input type="text" name="name" id="name"
                                    class="validate[required,ajax[ajaxAadharCheck]] form-control"
                                    value="" placeholder="Enter Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="u_name">Father/Spouse</label>
+
+                            <input type="text" name="fname" id="fname" class="form-control"
+                                   value="" placeholder="Enter Father/Spouse Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="u_name">D.O.B</label>
+
+                            <input type="date" name="dob" id="dob" class="form-control"
+                                   value="" placeholder="Enter Father/Spouse Name">
                         </div>
                         <div class="form-group">
                             <label for="u_name">Mobile Number</label>

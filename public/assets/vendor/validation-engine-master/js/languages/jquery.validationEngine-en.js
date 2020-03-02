@@ -1,4 +1,5 @@
-var aatharcheck_url = $('#checkaadhar').val();
+var aadharcheck_url = $('#checkaadhar').val();
+var pancheck_url = $('#checkpan').val();
 
 (function($){
     $.fn.validationEngineLanguage = function(){
@@ -39,7 +40,7 @@ var aatharcheck_url = $('#checkaadhar').val();
                     "alertText": "* Maximum ",
                     "alertText2": " characters allowed"
                 },
-		"groupRequired": {
+                "groupRequired": {
                     "regex": "none",
                     "alertText": "* You must fill one of the following fields",
                     "alertTextCheckboxMultiple": "* Please select an option",
@@ -108,20 +109,20 @@ var aatharcheck_url = $('#checkaadhar').val();
                 },
                 "date": {
                     //	Check if date is valid by leap year
-			"func": function (field) {
-					var pattern = new RegExp(/^(\d{4})[\/\-\.](0?[1-9]|1[012])[\/\-\.](0?[1-9]|[12][0-9]|3[01])$/);
-					var match = pattern.exec(field.val());
-					if (match == null)
-					   return false;
+                    "func": function (field) {
+                        var pattern = new RegExp(/^(\d{4})[\/\-\.](0?[1-9]|1[012])[\/\-\.](0?[1-9]|[12][0-9]|3[01])$/);
+                        var match = pattern.exec(field.val());
+                        if (match == null)
+                            return false;
 
-					var year = match[1];
-					var month = match[2]*1;
-					var day = match[3]*1;
-					var date = new Date(year, month - 1, day); // because months starts from 0.
+                        var year = match[1];
+                        var month = match[2]*1;
+                        var day = match[3]*1;
+                        var date = new Date(year, month - 1, day); // because months starts from 0.
 
-					return (date.getFullYear() == year && date.getMonth() == (month - 1) && date.getDate() == day);
-				},
-			 "alertText": "* Invalid date, must be in YYYY-MM-DD format"
+                        return (date.getFullYear() == year && date.getMonth() == (month - 1) && date.getDate() == day);
+                    },
+                    "alertText": "* Invalid date, must be in YYYY-MM-DD format"
                 },
                 "ipv4": {
                     "regex": /^((([01]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))[.]){3}(([0-1]?[0-9]{1,2})|(2[0-4][0-9])|(25[0-5]))$/,
@@ -139,7 +140,7 @@ var aatharcheck_url = $('#checkaadhar').val();
                     "regex": /^[a-zA-Z\ \']+$/,
                     "alertText": "* Letters only"
                 },
-				"onlyLetterAccentSp":{
+                "onlyLetterAccentSp":{
                     "regex": /^[a-z\u00C0-\u017F\ ]+$/i,
                     "alertText": "* Letters only (accents allowed)"
                 },
@@ -155,7 +156,7 @@ var aatharcheck_url = $('#checkaadhar').val();
                     "alertText": "* This user is already taken",
                     "alertTextLoad": "* Validating, please wait"
                 },
-				"ajaxUserCallPhp": {
+                "ajaxUserCallPhp": {
                     "url": "phpajax/ajaxValidateFieldUser.php",
                     // you may want to pass extra data on the ajax call
                     "extraData": "name=eric",
@@ -174,16 +175,16 @@ var aatharcheck_url = $('#checkaadhar').val();
                     // speaks by itself
                     "alertTextLoad": "* Validating, please wait"
                 },
-				 "ajaxNameCallPhp": {
-	                    // remote json service location
-	                    "url": "phpajax/ajaxValidateFieldName.php",
-	                    // error
-	                    "alertText": "* This name is already taken",
-	                    // speaks by itself
-	                    "alertTextLoad": "* Validating, please wait"
-	                },
+                "ajaxNameCallPhp": {
+                    // remote json service location
+                    "url": "phpajax/ajaxValidateFieldName.php",
+                    // error
+                    "alertText": "* This name is already taken",
+                    // speaks by itself
+                    "alertTextLoad": "* Validating, please wait"
+                },
                 "ajaxAadharCheck": {
-                    "url": aatharcheck_url,
+                    "url": aadharcheck_url,
                     // you may want to pass extra data on the ajax call
                     "alertText": "* This Aadhar Number is already Registered with Us",
                     // if you provide an "alertTextOk", it will show as a green prompt when the field validates
@@ -192,7 +193,7 @@ var aatharcheck_url = $('#checkaadhar').val();
                     "alertTextLoad": "* Validating, please wait"
                 },
                 "ajaxPanCheck": {
-                    "url": "aiboc_admin/ajaxphp/ajaxPanCheck.php",
+                    "url": pancheck_url,
                     // you may want to pass extra data on the ajax call
                     "alertText": "* This PAN Number is already Registered with Us",
                     // if you provide an "alertTextOk", it will show as a green prompt when the field validates
@@ -203,19 +204,19 @@ var aatharcheck_url = $('#checkaadhar').val();
                 "validate2fields": {
                     "alertText": "* Please input HELLO"
                 },
-	            //tls warning:homegrown not fielded
+                //tls warning:homegrown not fielded
                 "dateFormat":{
                     "regex": /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$|^(?:(?:(?:0?[13578]|1[02])(\/|-)31)|(?:(?:0?[1,3-9]|1[0-2])(\/|-)(?:29|30)))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(?:(?:0?[1-9]|1[0-2])(\/|-)(?:0?[1-9]|1\d|2[0-8]))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(0?2(\/|-)29)(\/|-)(?:(?:0[48]00|[13579][26]00|[2468][048]00)|(?:\d\d)?(?:0[48]|[2468][048]|[13579][26]))$/,
                     "alertText": "* Invalid Date"
                 },
                 //tls warning:homegrown not fielded
-				"dateTimeFormat": {
-	                "regex": /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])\s+(1[012]|0?[1-9]){1}:(0?[1-5]|[0-6][0-9]){1}:(0?[0-6]|[0-6][0-9]){1}\s+(am|pm|AM|PM){1}$|^(?:(?:(?:0?[13578]|1[02])(\/|-)31)|(?:(?:0?[1,3-9]|1[0-2])(\/|-)(?:29|30)))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^((1[012]|0?[1-9]){1}\/(0?[1-9]|[12][0-9]|3[01]){1}\/\d{2,4}\s+(1[012]|0?[1-9]){1}:(0?[1-5]|[0-6][0-9]){1}:(0?[0-6]|[0-6][0-9]){1}\s+(am|pm|AM|PM){1})$/,
+                "dateTimeFormat": {
+                    "regex": /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])\s+(1[012]|0?[1-9]){1}:(0?[1-5]|[0-6][0-9]){1}:(0?[0-6]|[0-6][0-9]){1}\s+(am|pm|AM|PM){1}$|^(?:(?:(?:0?[13578]|1[02])(\/|-)31)|(?:(?:0?[1,3-9]|1[0-2])(\/|-)(?:29|30)))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^((1[012]|0?[1-9]){1}\/(0?[1-9]|[12][0-9]|3[01]){1}\/\d{2,4}\s+(1[012]|0?[1-9]){1}:(0?[1-5]|[0-6][0-9]){1}:(0?[0-6]|[0-6][0-9]){1}\s+(am|pm|AM|PM){1})$/,
                     "alertText": "* Invalid Date or Date Format",
                     "alertText2": "Expected Format: ",
                     "alertText3": "mm/dd/yyyy hh:mm:ss AM|PM or ",
                     "alertText4": "yyyy-mm-dd hh:mm:ss AM|PM"
-	            }
+                }
             };
 
         }
