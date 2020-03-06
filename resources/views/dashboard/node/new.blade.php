@@ -170,14 +170,14 @@
                 </div>
            <div class="form-group">
                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                   <label class="btn btn-info">
-                       <input type="radio" class="validate[required]" value="left" name="tree_position" id="tree_position" autocomplete="off"> Left
+                   <label class="btn btn-info" id="left-lab">
+                       <input type="radio" class="validate[required]" value="left" name="tree_position" id="tree_position_left" autocomplete="off"> Left
                    </label>
-                   <label class="btn btn-info" style="display: none">
-                       <input type="radio" value="middle"  name="tree_position" id="tree_position" autocomplete="off"> Middle
+                   <label class="btn btn-info" id="mid-lab" style="display: block">
+                       <input type="radio" value="middle"  name="tree_position" id="tree_position_middle" autocomplete="off"> Middle
                    </label>
-                   <label class="btn btn-info">
-                       <input type="radio" class="validate[required]" value="right" name="tree_position" id="tree_position" autocomplete="off"> Right
+                   <label class="btn btn-info" id="right-lab">
+                       <input type="radio"  class="validate[required]" value="right" name="tree_position_right" id="tree_position" autocomplete="off"> Right
                    </label>
                </div>
            </div>
@@ -209,6 +209,9 @@
 
         $('#sponserid').keyup(function () {
             var val = $(this).val();
+            $("input:radio").removeAttr("checked");
+            $("input:radio").attr("checked", false);
+
             var url = "{{ URL::to('dashboard/node/getsponser') }}";
             $.get(url, {value: val, "_token": "{{ csrf_token() }}"}, function (data) {
                     //console.log(data);
@@ -216,8 +219,14 @@
                         $('#sponsername').val('');
                         $('#sponsermobile').val('');
                         $('#sponseraddress').val('');
+                        $('#left-lab').css('display', 'none');
+                        $('#mid-lab').css('display', 'none');
+                        $('#right-lab').css('display', 'none');
 
-                    } else {
+                    }
+                    else {
+
+
 
                         var json = JSON.parse(data);
                         $('#sponsername').val(json.name);
@@ -232,6 +241,26 @@
                                 $('#sponsername').css('color', 'red');
                             }, 500);
                         }, 1000);
+
+                        if(json.l=='')
+                        {
+                            $('#left-lab').css('display', 'block');
+
+                        }
+                        if(json.r=='')
+                        {
+                            $('#mid-lab').css('display', 'block');
+
+                        }
+                        if(json.m=='')
+                        {
+                            $('#right-lab').css('display', 'block');
+
+                        }
+
+
+
+
                     }
 
                 }
