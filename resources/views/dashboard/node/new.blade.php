@@ -209,12 +209,17 @@
 
         $('#sponserid').keyup(function () {
             var val = $(this).val();
+
             $("input:radio").removeAttr("checked");
             $("input:radio").attr("checked", false);
+            $('#tree_position_left').attr("checked" , false );
+            $('#tree_position_middle').attr("checked" , false );
+            $('#tree_position_right').attr("checked" , false );
+
 
             var url = "{{ URL::to('dashboard/node/getsponser') }}";
             $.get(url, {value: val, "_token": "{{ csrf_token() }}"}, function (data) {
-                    //console.log(data);
+
                     if (data === 'error') {
                         $('#sponsername').val('');
                         $('#sponsermobile').val('');
@@ -223,18 +228,11 @@
                         $('#mid-lab').css('display', 'none');
                         $('#right-lab').css('display', 'none');
 
-                    }
-                    else {
-
-
-
+                    } else {
                         var json = JSON.parse(data);
                         $('#sponsername').val(json.name);
-
                         $('#sponsermobile').val(json.mobile);
                         $('#sponseraddress').val(json.address);
-
-
                         setInterval(function () {
                             $('#sponsername').css('color', 'transparent');
                             setTimeout(function () {
@@ -242,27 +240,18 @@
                             }, 500);
                         }, 1000);
 
-                        if(json.l=='')
-                        {
+                        if (json.l == '') {
                             $('#left-lab').css('display', 'block');
-
                         }
-                        if(json.r=='')
-                        {
+                        if (json.r == '') {
                             $('#mid-lab').css('display', 'block');
 
                         }
-                        if(json.m=='')
-                        {
+                        if (json.m == '') {
                             $('#right-lab').css('display', 'block');
 
                         }
-
-
-
-
                     }
-
                 }
             );
 
