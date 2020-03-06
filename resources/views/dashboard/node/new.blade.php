@@ -44,7 +44,7 @@
         }
     </style>
 
-    <form action="{{ URL::to('dashboard/coupon/save') }}" method="post" id="newnode">
+    <form action="{{ URL::to('dashboard/node/save') }}" method="post" id="newnode">
         @csrf
         <div class="row">
             <div class="col-lg-4">
@@ -215,6 +215,7 @@
             $('#tree_position_left').attr("checked" , false );
             $('#tree_position_middle').attr("checked" , false );
             $('#tree_position_right').attr("checked" , false );
+            $("input[name='tree_position_left']").attr("checked", false);
 
 
             var url = "{{ URL::to('dashboard/node/getsponser') }}";
