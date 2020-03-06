@@ -168,21 +168,16 @@
                     <input type="text" name="sponsermobile" id="sponsermobile" class="form-control"
                            value="" readonly>
                 </div>
-               {{-- <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
-                    <button type="button" class="btn btn-primary">Left</button>
-                    <button type="button" class="btn btn-primary">Middle</button>
-                    <button type="button" class="btn btn-primary">Right</button>
-                </div>--}}
            <div class="form-group">
                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                   <label class="btn btn-secondary active">
-                       <input type="radio" name="options" id="option1" autocomplete="off" checked> Left
+                   <label class="btn btn-info">
+                       <input type="radio" class="validate[required]" value="left" name="tree_position" id="tree_position" autocomplete="off" checked> Left
                    </label>
-                   <label class="btn btn-secondary">
-                       <input type="radio" name="options" id="option2" autocomplete="off"> Middle
+                   <label class="btn btn-info">
+                       <input type="radio" class="validate[required]" value="middle" disabled name="tree_position" id="tree_position" autocomplete="off"> Middle
                    </label>
-                   <label class="btn btn-secondary">
-                       <input type="radio" name="options" id="option3" autocomplete="off"> Right
+                   <label class="btn btn-info">
+                       <input type="radio" class="validate[required]" value="right" name="tree_position" id="tree_position" autocomplete="off"> Right
                    </label>
                </div>
            </div>
