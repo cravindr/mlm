@@ -169,18 +169,24 @@
                            value="" readonly>
                 </div>
            <div class="form-group">
-               <div class="custom-control custom-radio custom-control-inline " id="left-lab">
-                   <input type="radio" value="left" class="validate[required] custom-control-input" id="tree_left" name="tree_position">
-                   <label class="custom-control-label" for="tree_left">Left</label>
+               <div class="card">
+                   <div class=card-header">Tree Positions</div>
+                   <div class="card-body">
+                       <div class="custom-control custom-radio custom-control-inline col-lg-3" id="left-lab">
+                           <input type="radio" value="left" class="validate[required] custom-control-input" id="tree_left" name="tree_position">
+                           <label class="custom-control-label" for="tree_left">Left</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline col-lg-3" id="middle-lab">
+                           <input type="radio" value="middle" class="validate[required] custom-control-input" id="tree_middle" name="tree_position">
+                           <label class="custom-control-label" for="tree_middle">Middle</label>
+                       </div>
+                       <div class="custom-control custom-radio custom-control-inline col-lg-3" id="right-lab">
+                           <input type="radio" value="right" class="validate[required] custom-control-input" id="tree_right" name="tree_position">
+                           <label class="custom-control-label" for="tree_right">Right</label>
+                       </div>
+                   </div>
                </div>
-               <div class="custom-control custom-radio custom-control-inline " id="middle-lab">
-                   <input type="radio" value="middle" class="validate[required] custom-control-input" id="tree_middle" name="tree_position">
-                   <label class="custom-control-label" for="tree_middle">Middle</label>
-               </div>
-               <div class="custom-control custom-radio custom-control-inline " id="right-lab">
-                   <input type="radio" value="right" class="validate[required] custom-control-input" id="tree_right" name="tree_position">
-                   <label class="custom-control-label" for="tree_right">Right</label>
-               </div>
+
            </div>
 
             </div>
@@ -220,7 +226,6 @@
                         $('#sponsername').val('');
                         $('#sponsermobile').val('');
                         $('#sponseraddress').val('');
-                        //$('#left-lab, #middle-lab, #right-lab').hide();
                        $('#left-lab, #middle-lab, #right-lab').css('display', 'none');
 
                     } else {
@@ -235,7 +240,6 @@
                             }, 500);
                         }, 1000);
 
-                       // console.log(json);
 
                         if (json.l == '') {
                             $('#left-lab').css('display', 'inline');
