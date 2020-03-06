@@ -127,13 +127,45 @@ class NodeController extends Controller
     public function GetSponser()
     {
         $id=\request()->value;
-        $res=DB::table('node')->select('name','mobile','address')->where('distributor_id',$id)->first();
+        $res=DB::table('node')->select('name','mobile','address','l','m','r')->where('distributor_id',$id)->first();
 
         if(!empty($res)){
             return json_encode($res);
         } else {
             echo 'error';
         }
+
+    }
+    public function Save(Request $request)
+    {
+        echo "<pre>";
+        print_r($request->input());
+    $node_data=[
+        'sponser_id'=>$request->sponserid,
+        'sponser_name'=>$request->sponsername,
+        'coupon_code'=>$request->couponcode,
+        'p'=>1,
+        'p_id'=>$request->sponserid,
+        'name'=>$request->name,
+        'f_name'=>$request->fname,
+        'dob'=>$request->dob,
+        'sex'=>'male',
+        'aadhar'=>$request->aadhar,
+        'pan'=>$request->pan,
+        'address'=>$request->address,
+        'mobile'=>$request->mobile,
+        'email'=>'cravindr@gmail.com',
+        'account_no'=>$request->accno,
+        'ifsc_code'=>$request->ifsccode,
+        'bank_name'=>$request->bankname,
+        'branch_name'=>$request->branchname,
+        'nominee_name'=>$request->nominee,
+        'nominee_relationship'=>$request->relationship,
+        'status'=>'active'
+
+    ];
+
+        $res=     DB::table('node')->insertGetId($node_data);
 
     }
 
