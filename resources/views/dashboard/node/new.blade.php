@@ -171,23 +171,16 @@
            <div class="form-group">
                <div class="btn-group btn-group-toggle" data-toggle="buttons">
                    <label class="btn btn-info">
-                       <input type="radio" class="validate[required] radio " value="left" name="tree_position"  autocomplete="off" > Left
+                       <input type="radio" class="validate[required]" value="left" name="tree_position" id="tree_position" autocomplete="off"> Left
+                   </label>
+                   <label class="btn btn-info" style="display: none">
+                       <input type="radio" value="middle"  name="tree_position" id="tree_position" autocomplete="off"> Middle
                    </label>
                    <label class="btn btn-info">
-                       <input type="radio" class="validate[required] radio " value="middle" disabled name="tree_position"  autocomplete="off"> Middle
-                   </label>
-                   <label class="btn btn-info">
-                       <input type="radio" class="validate[required] radio" value="right" name="tree_position"  autocomplete="off"> Right
+                       <input type="radio" class="validate[required]" value="right" name="tree_position" id="tree_position" autocomplete="off"> Right
                    </label>
                </div>
            </div>
-
-
-                {{--<div class="form-group">
-                    <input type="radio" name="myoptions" disabled value="blue" class="validate[required] "> Blue<br />
-                    <input type="radio" name="myoptions" disabled value="red"> Red<br />
-                    <input type="radio" name="myoptions" disabled value="green"> Green
-                </div>--}}
 
             </div>
         </div>
