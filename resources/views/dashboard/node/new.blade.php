@@ -211,8 +211,7 @@
         $('#sponserid').keyup(function () {
             var val = $(this).val();
 
-
-
+            $('input[type="radio"]').prop('checked', false);
             var url = "{{ URL::to('dashboard/node/getsponser') }}";
             $.get(url, {value: val, "_token": "{{ csrf_token() }}"}, function (data) {
                // $('input[type="radio"]').prop('checked', false);
@@ -221,9 +220,7 @@
                         $('#sponsername').val('');
                         $('#sponsermobile').val('');
                         $('#sponseraddress').val('');
-                        $('#left-lab').css('display', 'none');
-                        $('#middle-lab').css('display', 'none');
-                        $('#right-lab').css('display', 'none');
+                        $('#left-lab, #middle-lab, #right-lab').hide();
 
                     } else {
                         var json = JSON.parse(data);
@@ -237,17 +234,18 @@
                             }, 500);
                         }, 1000);
 
-                        console.log(json);
+                       // console.log(json);
 
                         if (json.l == '') {
-                            $('#left-lab').css('display', 'block');
+                            //$('#left-lab').css('display', 'block');
+                            $('#left-lab').show();
                         }
                         if (json.r == '') {
-                            $('#middle-lab').css('display', 'block');
+                            $('#middle-lab').show();
 
                         }
                         if (json.m == '') {
-                            $('#right-lab').css('display', 'block');
+                            $('#right-lab').show();
 
                         }
                     }
