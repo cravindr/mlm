@@ -4,7 +4,7 @@
 
 @section('pagecontent')
 
-    <style>
+    {{--<style>
         /* Tabs*/
         section {
             padding: 60px 0;
@@ -42,7 +42,7 @@
             color: #eee;
             font-size: 20px;
         }
-    </style>
+    </style>--}}
 
     <form action="{{ URL::to('dashboard/node/save') }}" method="post" id="newnode">
         @csrf
