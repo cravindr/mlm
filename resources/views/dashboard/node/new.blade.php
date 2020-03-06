@@ -169,16 +169,17 @@
                            value="" readonly>
                 </div>
            <div class="form-group">
-               <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                   <label class="btn btn-info" id="left-lab">
-                       <input type="radio" class="validate[required]" value="left" name="tree_position" id="tree_position_left" autocomplete="off"> Left
-                   </label>
-                   <label class="btn btn-info" id="mid-lab" style="display: block">
-                       <input type="radio" value="middle"  name="tree_position" id="tree_position_middle" autocomplete="off"> Middle
-                   </label>
-                   <label class="btn btn-info" id="right-lab">
-                       <input type="radio"  class="validate[required]" value="right" name="tree_position_right" id="tree_position" autocomplete="off"> Right
-                   </label>
+               <div class="custom-control custom-radio custom-control-inline">
+                   <input type="radio" value="left" class="custom-control-input" id="tree_left" name="tree_position">
+                   <label class="custom-control-label" for="tree_left">Left</label>
+               </div>
+               <div class="custom-control custom-radio custom-control-inline">
+                   <input type="radio" value="middle" class="custom-control-input" id="tree_middle" name="tree_position">
+                   <label class="custom-control-label" for="tree_middle">Middle</label>
+               </div>
+               <div class="custom-control custom-radio custom-control-inline">
+                   <input type="radio" value="right" class="custom-control-input" id="tree_right" name="tree_position">
+                   <label class="custom-control-label" for="tree_right">Right</label>
                </div>
            </div>
 
@@ -210,17 +211,12 @@
         $('#sponserid').keyup(function () {
             var val = $(this).val();
 
-            $("input:radio").removeAttr("checked");
-            $("input:radio").attr("checked", false);
-            $('#tree_position_left').attr("checked" , false );
-            $('#tree_position_middle').attr("checked" , false );
-            $('#tree_position_right').attr("checked" , false );
-            $("input[name='tree_position_left']").attr("checked", false);
 
 
             var url = "{{ URL::to('dashboard/node/getsponser') }}";
             $.get(url, {value: val, "_token": "{{ csrf_token() }}"}, function (data) {
-
+               // $('input[type="radio"]').prop('checked', false);
+                //console.log(data);
                     if (data === 'error') {
                         $('#sponsername').val('');
                         $('#sponsermobile').val('');
