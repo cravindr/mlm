@@ -63,6 +63,9 @@ Route::group(['middleware' => ['guest']], function () {
         //Node
         Route::get('node/aadharcheck', 'NodeController@AadharCheack');
         Route::get('node/pancheck', 'NodeController@PanCheack');
+        Route::get('node/sponsercheck', 'NodeController@SponserCheck');
+        Route::get('node/couponcheck', 'NodeController@CouponCheck');
+        Route::get('node/getsponser', 'NodeController@GetSponser');
         Route::get('node/create', 'NodeController@Create');
 
 

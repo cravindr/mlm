@@ -1,5 +1,7 @@
 var aadharcheck_url = $('#checkaadhar').val();
 var pancheck_url = $('#checkpan').val();
+var sponsercheck_url = $('#checksponser').val();
+var couponcheck_url = $('#checkcoupon').val();
 
 (function($){
     $.fn.validationEngineLanguage = function(){
@@ -160,7 +162,7 @@ var pancheck_url = $('#checkpan').val();
                     "url": "phpajax/ajaxValidateFieldUser.php",
                     // you may want to pass extra data on the ajax call
                     "extraData": "name=eric",
-                    // if you provide an "alertTextOk", it will show as a green prompt when the field validates
+                    // if you provide an "alertTextOk", it will show as a green prompt when the field validatescode
                     "alertTextOk": "* This username is available",
                     "alertText": "* This user is already taken",
                     "alertTextLoad": "* Validating, please wait"
@@ -196,6 +198,24 @@ var pancheck_url = $('#checkpan').val();
                     "url": pancheck_url,
                     // you may want to pass extra data on the ajax call
                     "alertText": "* This PAN Number is already Registered with Us",
+                    // if you provide an "alertTextOk", it will show as a green prompt when the field validates
+                    "alertTextOk": "",
+                    // speaks by itself
+                    "alertTextLoad": "* Validating, please wait"
+                },
+                "ajaxSponserCheck": {
+                    "url": sponsercheck_url,
+                    // you may want to pass extra data on the ajax call
+                    "alertText": "* Invalid Sponser Id",
+                    // if you provide an "alertTextOk", it will show as a green prompt when the field validates
+                    "alertTextOk": "",
+                    // speaks by itself
+                    "alertTextLoad": "* Validating, please wait"
+                },
+                "ajaxCouponCheck": {
+                    "url": couponcheck_url,
+                    // you may want to pass extra data on the ajax call
+                    "alertText": "*Invalid Coupon Code or Used Coupon ",
                     // if you provide an "alertTextOk", it will show as a green prompt when the field validates
                     "alertTextOk": "",
                     // speaks by itself
