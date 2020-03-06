@@ -170,15 +170,15 @@
                 </div>
            <div class="form-group">
                <div class="custom-control custom-radio custom-control-inline " id="left-lab">
-                   <input type="radio" value="left" class="custom-control-input validate[required]" id="tree_left" name="tree_position">
+                   <input type="radio" value="left" class="validate[required] custom-control-input" id="tree_left" name="tree_position">
                    <label class="custom-control-label" for="tree_left">Left</label>
                </div>
                <div class="custom-control custom-radio custom-control-inline " id="middle-lab">
-                   <input type="radio" value="middle" class="custom-control-input validate[required]" id="tree_middle" name="tree_position">
+                   <input type="radio" value="middle" class="validate[required] custom-control-input" id="tree_middle" name="tree_position">
                    <label class="custom-control-label" for="tree_middle">Middle</label>
                </div>
                <div class="custom-control custom-radio custom-control-inline " id="right-lab">
-                   <input type="radio" value="right" class="custom-control-input validate[required]" id="tree_right" name="tree_position">
+                   <input type="radio" value="right" class="validate[required] custom-control-input" id="tree_right" name="tree_position">
                    <label class="custom-control-label" for="tree_right">Right</label>
                </div>
            </div>
@@ -220,7 +220,8 @@
                         $('#sponsername').val('');
                         $('#sponsermobile').val('');
                         $('#sponseraddress').val('');
-                        $('#left-lab, #middle-lab, #right-lab').hide();
+                        //$('#left-lab, #middle-lab, #right-lab').hide();
+                       $('#left-lab, #middle-lab, #right-lab').css('display', 'none');
 
                     } else {
                         var json = JSON.parse(data);
@@ -237,15 +238,15 @@
                        // console.log(json);
 
                         if (json.l == '') {
-                            //$('#left-lab').css('display', 'block');
-                            $('#left-lab').show();
+                            $('#left-lab').css('display', 'inline');
+                            //$('#left-lab').enabled();
                         }
                         if (json.r == '') {
-                            $('#middle-lab').show();
+                            $('#middle-lab').css('display', 'inline');
 
                         }
                         if (json.m == '') {
-                            $('#right-lab').show();
+                            $('#right-lab').css('display', 'inline');
 
                         }
                     }
