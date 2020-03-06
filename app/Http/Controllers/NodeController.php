@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Coupon;
+use App\Node;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Psy\Util\Json;
@@ -127,7 +129,7 @@ class NodeController extends Controller
     public function GetSponser()
     {
         $id=\request()->value;
-        $res=DB::table('node')->select('name','mobile','address','l','m','r')->where('distributor_id',$id)->first();
+        $res=DB::table('node')->select('name','mobile','address','l','m','r','id')->where('distributor_id',$id)->first();
 
         if(!empty($res)){
             return json_encode($res);
@@ -136,38 +138,47 @@ class NodeController extends Controller
         }
 
     }
-    public function Save(Request $request)
+    public function Save()
     {
-        echo "<pre>";
-        print_r($request->input());
+        $req = \request()->all();
+
+
+
     $node_data=[
-        'sponser_id'=>$request->sponserid,
-        'sponser_name'=>$request->sponsername,
-        'coupon_code'=>$request->couponcode,
-        'p'=>1,
-        'p_id'=>$request->sponserid,
-        'name'=>$request->name,
-        'f_name'=>$request->fname,
-        'dob'=>$request->dob,
-        'sex'=>'male',
-        'aadhar'=>$request->aadhar,
-        'pan'=>$request->pan,
-        'address'=>$request->address,
-        'mobile'=>$request->mobile,
-        'email'=>'cravindr@gmail.com',
-        'account_no'=>$request->accno,
-        'ifsc_code'=>$request->ifsccode,
-        'bank_name'=>$request->bankname,
-        'branch_name'=>$request->branchname,
-        'nominee_name'=>$request->nominee,
-        'nominee_relationship'=>$request->relationship,
+        'distributor_id'=>Node::getDistributorId(),
+        'sponser_id'=>$req['sponserid'],
+        'sponser_name'=>$req['sponsername'],
+        'coupon_code'=>$req['couponcode'],
+        'p'=>$req['spon_id'],
+        'p_id'=>$req['sponserid'],
+        'name'=>$req['name'],
+        'f_name'=>$req['fname'],
+        'dob'=>$req['dob'],
+        'sex'=>$req['gender'],
+        'aadhar'=>$req['aadhar'],
+        'pan'=>$req['pan'],
+        'address'=>$req['address'],
+        'mobile'=>$req['mobile'],
+        'email'=>$req['email'],
+        'account_no'=>$req['accno'],
+        'ifsc_code'=>$req['ifsccode'],
+        'bank_name'=>$req['bankname'],
+        'branch_name'=>$req['branchname'],
+        'nominee_name'=>$req['nominee'],
+        'nominee_relationship'=>$req['relationship'],
         'status'=>'active'
 
     ];
 
+    //print_r($node_data)
         $res=     DB::table('node')->insertGetId($node_data);
+      $user_alot=  Node::AsignSponser($req['sponserid'],$res,$node_data['distributor_id'],$req['tree_position']);
+      $coupon_update=  Coupon::UseCoupon($node_data['coupon_code']);
+
+      echo "User Alloted : $user_alot  & Coupon Update:$coupon_update";
 
     }
+
 
 
 }

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class Coupon extends Model
@@ -87,7 +88,19 @@ private function NumFormat($strn)
 }
 
 
+    public static function UseCoupon($cuponCode)
+    {
+        $data = [
+            'status' => 'alloted'
+        ];
+        $res = DB::table('coupon')->where('coupon_code', $cuponCode)->update($data);
+        if ($res == 1) {
+            return 1;
 
+        } else {
+            return 0;
+        }
+    }
 
 
 

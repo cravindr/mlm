@@ -67,6 +67,7 @@ Route::group(['middleware' => ['guest']], function () {
         Route::get('node/couponcheck', 'NodeController@CouponCheck');
         Route::get('node/getsponser', 'NodeController@GetSponser');
         Route::get('node/create', 'NodeController@Create');
+        Route::post('node/save', 'NodeController@Save');
 
 
 

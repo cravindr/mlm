@@ -48,51 +48,114 @@
         @csrf
         <div class="row">
             <div class="col-lg-4">
-                <div class="form-group">
-                    <label for="u_name"> Name </label>
-                    {{--<input type="text" name="u_id" id="u_id">--}}
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="u_name"> Name </label>
+                            {{--<input type="text" name="u_id" id="u_id">--}}
 
-                    <input type="text" name="name" id="name"
-                           class=" form-control validate[required]"
-                           value="" placeholder="Enter Name"
-                           data-errormessage-value-missing="Name is required!">
-                </div>
-                <div class="form-group">
-                    <label for="u_name">Father/Spouse</label>
 
-                    <input type="text" name="fname" id="fname" class="form-control validate[required]"
-                           value="" placeholder="Enter Father/Spouse Name"
-                           data-errormessage-value-missing="Father / Spouse  Name is required!">
-                </div>
-                <div class="form-group">
-                    <label for="u_name">D.O.B</label>
 
-                    <input type="date" name="dob" id="dob" class="form-control"
-                           value="" placeholder="Select D.O.B">
-                </div>
-                <div class="form-group">
-                    <label for="u_name">Mobile Number</label>
+                            <input type="text" name="name" id="name"
+                                   class=" form-control validate[required]"
+                                   value="" placeholder="Enter Name"
+                                   data-errormessage-value-missing="Name is required!">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="u_name">Father/Spouse</label>
 
-                    <input type="text" name="mobile" id="mobile" class="form-control validate[required]"
-                           value="" placeholder="Enter Mobile Number"
-                           data-errormessage-value-missing="Mobile Numer is required!"/>
+                            <input type="text" name="fname" id="fname" class="form-control validate[required]"
+                                   value="" placeholder="Enter Father/Spouse Name"
+                                   data-errormessage-value-missing="Father / Spouse  Name is required!">
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="u_name">Aadhar Number</label>
-                    <input type="hidden" id="checkaadhar" value="{{ URL::to('dashboard/node/aadharcheck') }}">
-                    <input type="text" name="aadhar" id="aadhar"
-                           class="validate[required,ajax[ajaxAadharCheck]] form-control"
-                           value="" placeholder="Enter Aadhar Number"
-                           data-errormessage-value-missing="Aadhar Numer is required!">
-                </div>
-                <div class="form-group">
-                    <label for="lpan">Pan Number</label>
-                    <input type="hidden" id="checkpan" value="{{ URL::to('dashboard/node/pancheck') }}">
 
-                    <input type="text" name="pan" id="pan" class="form-control validate[required,ajax[ajaxPanCheck]]"
-                           value="" placeholder="Enter PAN Number"
-                           data-errormessage-value-missing=" PAN Numer is required!">
+
+
+
+
+                        <div class="form-group">
+                            <label for="u_name">D.O.B</label>
+
+                            <input type="date" name="dob" id="dob" class="form-control"
+                                   value="" placeholder="Select D.O.B">
+                        </div>
+
+
+                <div class="card">
+                        <div class="card-body">
+                            <div class=card-header">Gender</div>
+
+                                <div class="custom-control custom-radio custom-control-inline col-lg-3" >
+                                    <input type="radio" value="male" class="validate[required] custom-control-input" id="gender_male" name="gender" data-errormessage-value-missing="Select Gender">
+                                    <label class="custom-control-label" for="gender_male">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline col-lg-3" >
+                                    <input type="radio" value="female" class="validate[required] custom-control-input" id="gender_female" name="gender" data-errormessage-value-missing="Select Gender">
+                                    <label class="custom-control-label" for="gender_female">Female</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline col-lg-3" >
+                                    <input type="radio" value="others" class="validate[required] custom-control-input" id="gender_others" name="gender" data-errormessage-value-missing="Select Gender">
+                                    <label class="custom-control-label" for="gender_others">Others</label>
+                                </div>
+                    </div>
                 </div>
+
+
+
+
+
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="u_name">Mobile Number</label>
+
+                            <input type="text" name="mobile" id="mobile" class="form-control validate[required]"
+                                   value="" placeholder="Enter Mobile Number"
+                                   data-errormessage-value-missing="Mobile Numer is required!"/>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="u_name">Email Id</label>
+
+                            <input type="text" name="email" id="email" class="form-control validate[custom[email]"
+                                   value="" placeholder="Email"
+                                   data-errormessage-value-missing="Email id is required!"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="u_name">Aadhar Number</label>
+                            <input type="hidden" id="checkaadhar" value="{{ URL::to('dashboard/node/aadharcheck') }}">
+                            <input type="text" name="aadhar" id="aadhar"
+                                   class="validate[required,ajax[ajaxAadharCheck]] form-control"
+                                   value="" placeholder="Enter Aadhar Number"
+                                   data-errormessage-value-missing="Aadhar is required!">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="lpan">Pan Number</label>
+                            <input type="hidden" id="checkpan" value="{{ URL::to('dashboard/node/pancheck') }}">
+
+                            <input type="text" name="pan" id="pan" class="form-control validate[required,ajax[ajaxPanCheck]]"
+                                   value="" placeholder="Enter PAN Number"
+                                   data-errormessage-value-missing=" PAN is required!">
+                        </div>
+                    </div>
+                </div>
+
+
+
+
                 <div class="form-group">
                     <label for="u_email">Address</label>
                     <textarea name="address" id="address" class="form-control"
@@ -151,6 +214,7 @@
                 <div class="form-group">
                     <label for="u_email">Sponser Id</label>
                     <input type="hidden" id="checksponser" value="{{ URL::to('dashboard/node/sponsercheck') }}">
+                    <input type="hidden" id="spon_id" name="spon_id" >
                     <input type="text" name="sponserid" id="sponserid"
                            class="validate[required,ajax[ajaxSponserCheck]] form-control"
                            value="" placeholder="Enter Sponser Id"
@@ -215,13 +279,13 @@
 
 
         $('#sponserid').keyup(function () {
-            var val = $(this).val();
+              var val = $(this).val();
 
-            $('input[type="radio"]').prop('checked', false);
+            $('input[name="tree_position"]').prop('checked', false);
             var url = "{{ URL::to('dashboard/node/getsponser') }}";
             $.get(url, {value: val, "_token": "{{ csrf_token() }}"}, function (data) {
-               // $('input[type="radio"]').prop('checked', false);
-                //console.log(data);
+
+
                     if (data === 'error') {
                         $('#sponsername').val('');
                         $('#sponsermobile').val('');
@@ -230,9 +294,12 @@
 
                     } else {
                         var json = JSON.parse(data);
+                        console.log(json);
                         $('#sponsername').val(json.name);
                         $('#sponsermobile').val(json.mobile);
                         $('#sponseraddress').val(json.address);
+                        $('#spon_id').val(json.id);
+
                         setInterval(function () {
                             $('#sponsername').css('color', 'transparent');
                             setTimeout(function () {
