@@ -68,6 +68,18 @@ Route::group(['middleware' => ['guest']], function () {
         Route::get('node/getsponser', 'NodeController@GetSponser');
         Route::get('node/create', 'NodeController@Create');
         Route::post('node/save', 'NodeController@Save');
+        Route::post('node/save2', 'NodeController@save2');
+        Route::get('node/list', 'NodeController@list');
+        Route::get('nodeserverside', 'NodeController@NodeServerSide');
+        Route::post('node/nodeedit', 'NodeController@NodeEdit');
+        Route::post('node/updatesave', 'NodeController@UpdateSave');
+        Route::post('node/deactivate', 'NodeController@NodeDeactivate');
+        Route::post('node/activate', 'NodeController@NodeActivate');
+        Route::get('node/test/{id}', 'NodeController@getParent1');
+
+        //Tree
+        Route::get('tree/{id}', 'TreeController@index');
+
 
 
 

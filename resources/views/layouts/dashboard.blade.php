@@ -52,13 +52,30 @@
                                 <a href="{{ URL::to('/dashboard/coupon/list') }}">
                                     <i class="fa fa-list"></i>List</a>
                             </li>
-                            <li>
-                                <a href="forget-pass.html">Forget Password</a>
-                            </li>
+
 
 
                         </ul>
                     </li>
+
+                    <li class="has-sub">
+                        <a class="js-arrow open" href="#">
+                            <i class="fas fa-copy"></i>Node</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'node' ? 'block' : 'none' }};">
+                            <li class="{{ (Request::segment(2) == 'node' && Request::segment(3)=='create') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/node/create') }}">
+                                    <i class="fa fa-plus"></i>New</a>
+                            </li>
+                            <li class="{{ (Request::segment(2) == 'node' && Request::segment(3) == 'list') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/node/list') }}">
+                                    <i class="fa fa-list"></i>List</a>
+                            </li>
+
+
+
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
         </div>

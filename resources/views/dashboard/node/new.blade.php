@@ -44,7 +44,7 @@
         }
     </style>--}}
 
-    <form action="{{ URL::to('dashboard/node/save') }}" method="post" id="newnode">
+    <form action="{{ URL::to('dashboard/node/save2') }}" method="post" id="newnode">
         @csrf
         <div class="row">
             <div class="col-lg-4">
@@ -194,9 +194,9 @@
                            data-errormessage-value-missing="Nominee Name is required!">
                 </div>
                 <div class="form-group">
-                    <label for="u_email">Relationship with Nominee Name</label>
+                    <label for="u_email">Relationship with Nominee </label>
                     <input type="text" name="relationship" id="relationship" class="form-control"
-                           value="" placeholder="Enter Nominee Name">
+                           value="" placeholder="Enter Relationship with Nominee">
                 </div>
             </div>
             <div class="col-lg-4">
@@ -308,17 +308,17 @@
                         }, 1000);
 
 
-                        if (json.l == '') {
+                        if (json.l == '' ||json.l == 0||json.l == null  ) {
                             $('#left-lab').css('display', 'inline');
                             //$('#left-lab').enabled();
                         }
-                        if (json.r == '') {
-                            $('#middle-lab').css('display', 'inline');
-
-                        }
-                        if (json.m == '') {
+                        if (json.r == '' || json.r == 0 || json.r == null) {
                             $('#right-lab').css('display', 'inline');
 
+                        }
+                        if (json.m == '' || json.m == 0 || json.m == null) {
+
+                            $('#middle-lab').css('display', 'inline');
                         }
                     }
                 }
