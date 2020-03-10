@@ -140,6 +140,7 @@ from node
         $res = DB::table('node')->select('name','coupon_code','distributor_id','l','m','r')->where('id', $id)->first();
 
 
+
         $root=new \stdClass();
         $root->id=$id;
         $root->name=$res->name;
@@ -181,7 +182,7 @@ from node
 
 
         $resr = DB::table('node')->select('name', 'coupon_code', 'distributor_id', 'l', 'm', 'r')->where('id', $res->r)->first();
-        if ($resm) {
+        if ($resr) {
             $right = new \stdClass();
             $right->id = $res->r;
             $right->name = $resr->name;

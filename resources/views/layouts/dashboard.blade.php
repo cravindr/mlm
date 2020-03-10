@@ -76,6 +76,24 @@
                         </ul>
                     </li>
 
+                    <li class="has-sub">
+                        <a class="js-arrow open" href="#">
+                            <i class="fas fa-copy"></i>Tree</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'node' ? 'block' : 'none' }};">
+                            <li class="{{ (Request::segment(2) == 'tree' && Request::segment(3)=='') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/tree/1') }}">
+                                    <i class="fa fa-plus"></i>View</a>
+                            </li>
+                            <li class="{{ (Request::segment(2) == 'node' && Request::segment(3) == 'list') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/node/list') }}">
+                                    <i class="fa fa-list"></i>List</a>
+                            </li>
+
+
+
+                        </ul>
+                    </li>
+
                 </ul>
             </nav>
         </div>
