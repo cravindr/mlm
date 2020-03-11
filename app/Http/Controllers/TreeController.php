@@ -16,4 +16,15 @@ class TreeController extends Controller
      print_r($data);*/
         return view('dashboard.tree.index')->with($data);
     }
+
+
+    public function AutoTree(){
+        $id=\request()->id;
+        $data=   Node::getAutoTree($id);
+
+        /*     echo "<pre>";
+             print_r($data);*/
+        return view('dashboard.tree.auto_tree')->with($data);
+    }
+
 }

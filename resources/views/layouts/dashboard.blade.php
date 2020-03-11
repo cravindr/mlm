@@ -15,8 +15,8 @@
 @section('content')
     @inject('pro', 'App\Http\Controllers\DashboardController')
     <!-- MENU SIDEBAR-->
-    <aside class="menu-sidebar d-none d-lg-block">
-        <div class="logo">
+    <aside class="menu-sidebar ">
+        <div class="logo d-none d-lg-block">
             <a href="#">
                 <img src="{{ asset('assets/images/logo/logo.png') }}" alt="MLM"/>
             </a>
@@ -28,14 +28,8 @@
                         <a href="{{ URL::to('/dashboard') }}">
                             <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                     </li>
-                    <li class="{{ Request::segment(2) == 'quote' ? 'active' : '' }}">
-                        <a href="{{ URL::to('/dashboard/quote') }}">
-                            <i class="fas fa-chart-bar"></i>Quote View</a>
-                    </li>
-                    <li class="{{ Request::segment(2) == 'purchaseorder' ? 'active' : '' }}">
-                        <a href="{{ URL::to('/dashboard/purchaseorder') }}">
-                            <i class="fas fa-calendar-alt"></i>PO View</a>
-                    </li>
+
+
                     <li class="{{ Request::segment(2) == 'users' ? 'active' : '' }}">
                         <a href="{{ URL::to('/dashboard/users') }}">
                             <i class="fa fa-user-plus"></i>Users</a>
@@ -71,8 +65,6 @@
                                     <i class="fa fa-list"></i>List</a>
                             </li>
 
-
-
                         </ul>
                     </li>
 
@@ -84,9 +76,9 @@
                                 <a href="{{ URL::to('/dashboard/tree/1') }}">
                                     <i class="fa fa-plus"></i>View</a>
                             </li>
-                            <li class="{{ (Request::segment(2) == 'node' && Request::segment(3) == 'list') ? 'active' : '' }}">
-                                <a href="{{ URL::to('/dashboard/node/list') }}">
-                                    <i class="fa fa-list"></i>List</a>
+                            <li class="{{ (Request::segment(2) == 'autotree' && Request::segment(3) == '') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/autotree/1') }}">
+                                    <i class="fa fa-list"></i>Auto</a>
                             </li>
 
 
