@@ -24,7 +24,7 @@ Route::post('newpassupdate', 'UserController@ResetPasswordUpdate');
 
 
 // Authendicated Route
-Route::group(['middleware' => ['guest']], function () {
+    Route::group(['middleware' => ['guest']], function () {
     Route::get('dashboard', 'DashboardController@index');
 
     Route::prefix('dashboard')->group(function () {
@@ -76,10 +76,12 @@ Route::group(['middleware' => ['guest']], function () {
         Route::post('node/deactivate', 'NodeController@NodeDeactivate');
         Route::post('node/activate', 'NodeController@NodeActivate');
         Route::get('node/test/{id}', 'NodeController@getParent1');
-        Route::get('node/comissionlist', 'NodeController@comissionlist');
-        Route::get('node/comission/{id}', 'NodeController@comission');
-        Route::get('comissionserverside/{id}', 'NodeController@ComissionServerSide');
 
+        Route::get('comission/comissionlist', 'NodeController@comissionlist');
+        Route::get('comission/comission/{id}', 'NodeController@comission');
+        Route::get('comissionserverside/{id}', 'NodeController@ComissionServerSide');
+        Route::get('comission/couponcomissionlist', 'NodeController@couponcomissionlist');
+        Route::get('couponcomissionserverside', 'NodeController@CouponComissionServerSide');
         //Tree
         Route::get('tree/tree/{id}', 'TreeController@index');
         Route::get('tree/autotree/{id}', 'TreeController@AutoTree');

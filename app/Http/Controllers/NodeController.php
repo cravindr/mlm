@@ -154,6 +154,12 @@ class NodeController extends Controller
     {
         return view('dashboard.node.comission_list');
     }
+
+    public function couponcomissionlist()
+    {
+        return view('dashboard.node.coupon_comission_list');
+    }
+
     public function comission()
     {
         $id=\request()->id;
@@ -170,6 +176,12 @@ class NodeController extends Controller
     public function ComissionServerSide($node_id)
     {
         $res = DB::select(DB::raw("select t.coupon,t.amount,t.cdate,n.name,t.status, n.distributor_id,n.id from transaction t join node n on( t.coupon=n.coupon_code) where t.node_id=$node_id"));
+        return datatables()->of($res)->toJson();
+    }
+
+    public function CouponComissionServerSide()
+    {
+        $res = DB::select(DB::raw("select t.node_id,t.node_code,t.node_name,t.coupon, n.name,n.distributor_id, t.amount,DATE_FORMAT(t.cdate,'%d-%m-%Y' ) as 'cdate'  from transaction t join node n on(t.coupon=n.coupon_code)"));
         return datatables()->of($res)->toJson();
     }
 

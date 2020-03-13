@@ -83,9 +83,24 @@
 
                         </ul>
                     </li>
-                    <li class="{{ Request::segment(3) == 'comissionlist' ? 'active' : '' }}">
+                   {{-- <li class="{{ Request::segment(3) == 'comissionlist' ? 'active' : '' }}">
                         <a href="{{ URL::to('/dashboard/node/comissionlist/') }}">
                             <i class="fa fa-user-plus"></i>Comission</a>
+                    </li>--}}
+                    <li class="has-sub">
+                        <a class="js-arrow open" href="#">
+                            <i class="fas fa-copy"></i>Comission</a>
+                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'comission' ? 'block' : 'none' }};">
+                            <li class="{{ (Request::segment(2) == 'comission' && Request::segment(3)=='comissionlist') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/comission/comissionlist') }}">
+                                    <i class="fa fa-list"></i>Person</a>
+                            </li>
+                            <li class="{{ (Request::segment(2) == 'comission' && Request::segment(3) == 'autotree') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/comission/couponcomissionlist/') }}">
+                                    <i class="fa fa-tag"></i>Coupon</a>
+                            </li>
+
+                        </ul>
                     </li>
 
                 </ul>

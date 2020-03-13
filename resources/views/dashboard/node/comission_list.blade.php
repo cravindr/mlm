@@ -129,7 +129,7 @@
                 if(data.status=='active'|| data.status=='inactive')
 
                 var id=data.id;
-                var url="{{ URL::to('dashboard/node/comission/')}}";
+                var url="{{ URL::to('dashboard/comission/comission/')}}";
                 var full_url=url+"/"+id;
                    window.location.href=full_url;
             } );
