@@ -119,30 +119,30 @@ The markup will be simple nested lists
             <div class="tree">
                 <ul>
                     <li>
-                        <a href="{{URL::to('dashboard/tree/'.$root->id)}}">{{$root->name}}</a>
+                        <a href="{{URL::to('dashboard/tree/tree/'.$root->id)}}">{{$root->name}} <br>{{$root->distributor_id}} </a>
                         <ul>
                             <li>
-                                <a href="{{URL::to('dashboard/tree/'.$left->id)}}">{{{$left->name}}}</a>
+                                <a href="{{($left->id=='#')?'#':URL::to('dashboard/tree/tree/'.$left->id)}}">{{$left->name }} <br>{{$left->distributor_id}}</a>
                                 <ul>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$leftl->id)}}">{{{$leftl->name}}}</a></li>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$leftm->id)}}">{{{$leftm->name}}}</a></li>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$leftr->id)}}">{{{$leftr->name}}}</a></li>
+                                    <li><a href="{{($leftl->id=='#')?'#':URL::to('dashboard/tree/tree/'.$leftl->id)}}">{{$leftl->name}}</a></li>
+                                    <li><a href="{{($leftm->id=='#')?'#':URL::to('dashboard/tree/tree/'.$leftm->id)}}">{{$leftm->name}}</a></li>
+                                    <li><a href="{{($leftr->id=='#')?'#':URL::to('dashboard/tree/tree/'.$leftr->id)}}">{{$leftr->name}}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="{{URL::to('dashboard/tree/'.$middle->id)}}">{{{$middle->name}}}</a>
+                                <a href="{{($middle->id=='#')?'#':URL::to('dashboard/tree/tree/'.$middle->id)}}">{{$middle->name}} <br>{{$middle->distributor_id}}</a>
                                 <ul>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$middlel->id)}}">{{{$middlel->name}}}</a></li>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$middlem->id)}}">{{{$middlem->name}}}</a></li>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$middler->id)}}">{{{$middler->name}}}</a></li>
+                                    <li><a href="{{($middlel->id=='#')?'#':URL::to('dashboard/tree/tree/'.$middlel->id)}}">{{$middlel->name}}</a></li>
+                                    <li><a href="{{($middlem->id=='#')?'#':URL::to('dashboard/tree/tree/'.$middlem->id)}}">{{$middlem->name}}</a></li>
+                                    <li><a href="{{($middler->id=='#')?'#':URL::to('dashboard/tree/tree/'.$middler->id)}}">{{$middler->name}}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="{{URL::to('dashboard/tree/'.$right->id)}}">{{{$right->name}}}</a>
+                                <a href="{{($right->id=='#')?'#':URL::to('dashboard/tree/tree/'.$right->id)}}">{{$right->name}} <br>{{$right->distributor_id}}</a>
                                 <ul>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$rightl->id)}}">{{{$rightl->name}}}</a></li>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$rightm->id)}}">{{{$rightm->name}}}</a></li>
-                                    <li><a href="{{URL::to('dashboard/tree/'.$rightr->id)}}">{{{$rightr->name}}}</a></li>
+                                    <li><a href="{{($rightl->id=='#')?'#':URL::to('dashboard/tree/tree/'.$rightl->id)}}">{{$rightl->name}}</a></li>
+                                    <li><a href="{{($rightm->id=='#')?'#':URL::to('dashboard/tree/tree/'.$rightm->id)}}">{{$rightm->name}}</a></li>
+                                    <li><a href="{{($rightr->id=='#')?'#':URL::to('dashboard/tree/tree/'.$rightr->id)}}">{{$rightr->name}}</a></li>
                                 </ul>
                             </li>
                         </ul>

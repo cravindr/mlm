@@ -571,6 +571,77 @@ from node
 
     }
 
+    public static function AsignAutoNodeParrent($id)
+    {
+
+        $l=$id*3-1;
+        $m=$id*3;
+        $r=$id*3+1;
+        $p=round($id/3);
+
+        $data = [
+            'p'=>$p,
+            'l'=>$l,
+            'm'=>$m,
+            'r'=>$r
+
+        ];
+        $res = DB::table('auto_node')->where('id',$id )->update($data);
+
+        if ($res == 1) {
+            return 1;
+
+        } else {
+            return 0;
+        }
+    }
+
+    public static function setAutoNodeParentCommision($id, $init = 0,$cupon_code=0)
+    {
+        $init++;
+
+        if ($id == '') {
+            return 1;
+        }
+        else {
+
+            $res = DB::table('node')->select('id', 'distributor_id', 'sponser_name', 'p', 'p_id', 'name', 'coupon_code')->where('id', $id)->first();
+            echo "<br>" . $res->p_id . " : $res->p ,$init";
+
+
+            $amount = 0;
+            if ($init == 1) {
+                $amount = 300;
+            } elseif ($init == 2) {
+                $amount = 200;
+            } elseif ($init == 3) {
+                $amount = 100;
+            } elseif ($init == 4) {
+                $amount = 50;
+            } elseif ($init == 5) {
+                $amount = 20;
+            }
+
+
+            if ($amount >= 20) {
+                $data = [
+                    'node_id' => $res->p,
+                    'node_code' => $res->p_id,
+                    'node_name' => $res->sponser_name,
+                    'coupon' => $cupon_code,
+                    'amount' => $amount,
+                    'status' => 'credit'
+                ];
+
+                DB::table('transaction')->insert($data);
+            }
+            //print_r("test value <pre>".$res);
+            self::setAutoNodeParentCommision($res->p, $init, $cupon_code);
+
+        }
+
+    }
+
 
 
 

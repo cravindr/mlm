@@ -300,12 +300,15 @@ class NodeController extends Controller
 
 
 
-        //$res_auto=     DB::table('auto_node')->insertGetId($node_data);
+
 
         if ($res) {
+            $res_auto=     DB::table('auto_node')->insertGetId($node_data);
 
-            DB::insert("INSERT INTO `auto_node` ( `distributor_id`, `sponser_id`, `sponser_name`, `coupon_code`, `p`, `l`, `m`, `r`, `p_id`, `l_id`, `m_id`, `r_id`, `name`, `f_name`, `dob`, `sex`, `aadhar`, `pan`, `address`, `mobile`, `email`, `account_no`, `ifsc_code`, `bank_name`, `branch_name`, `nominee_name`, `nominee_relationship`,`cdate`, `status`)
-                           SELECT `distributor_id`, `sponser_id`, `sponser_name`, `coupon_code`, `p`, `l`, `m`, `r`, `p_id`, `l_id`, `m_id`, `r_id`, `name`, `f_name`, `dob`, `sex`, `aadhar`, `pan`, `address`, `mobile`, `email`, `account_no`, `ifsc_code`, `bank_name`, `branch_name`, `nominee_name`, `nominee_relationship`,`cdate`, `status` FROM node where id = $res");
+/*$auto_id=  DB::insert("INSERT INTO `auto_node` ( `distributor_id`, `sponser_id`, `sponser_name`, `coupon_code`, `p`, `l`, `m`, `r`, `p_id`, `l_id`, `m_id`, `r_id`, `name`, `f_name`, `dob`, `sex`, `aadhar`, `pan`, `address`, `mobile`, `email`, `account_no`, `ifsc_code`, `bank_name`, `branch_name`, `nominee_name`, `nominee_relationship`,`cdate`, `status`)
+                           SELECT `distributor_id`, `sponser_id`, `sponser_name`, `coupon_code`, `p`, `l`, `m`, `r`, `p_id`, `l_id`, `m_id`, `r_id`, `name`, `f_name`, `dob`, `sex`, `aadhar`, `pan`, `address`, `mobile`, `email`, `account_no`, `ifsc_code`, `bank_name`, `branch_name`, `nominee_name`, `nominee_relationship`,`cdate`, `status` FROM node where id = $res")->id;*/
+
+            Node::AsignAutoNodeParrent($res_auto);
 
             $user_alot = Node::AsignSponser($req['sponserid'], $res, $node_data['distributor_id'], $req['tree_position']);
             $coupon_update = Coupon::UseCoupon($node_data['coupon_code']);

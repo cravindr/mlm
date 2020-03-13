@@ -71,13 +71,13 @@
                     <li class="has-sub">
                         <a class="js-arrow open" href="#">
                             <i class="fas fa-copy"></i>Tree</a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'node' ? 'block' : 'none' }};">
-                            <li class="{{ (Request::segment(2) == 'tree' && Request::segment(3)=='') ? 'active' : '' }}">
-                                <a href="{{ URL::to('/dashboard/tree/1') }}">
+                        <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'tree' ? 'block' : 'none' }};">
+                            <li class="{{ (Request::segment(2) == 'tree' && Request::segment(3)=='tree') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/tree/tree/1') }}">
                                     <i class="fa fa-plus"></i>View</a>
                             </li>
-                            <li class="{{ (Request::segment(2) == 'autotree' && Request::segment(3) == '') ? 'active' : '' }}">
-                                <a href="{{ URL::to('/dashboard/autotree/1') }}">
+                            <li class="{{ (Request::segment(2) == 'tree' && Request::segment(3) == 'autotree') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/tree/autotree/1') }}">
                                     <i class="fa fa-list"></i>Auto</a>
                             </li>
 

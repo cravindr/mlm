@@ -120,30 +120,30 @@ The markup will be simple nested lists
             <div class="tree">
                 <ul>
                     <li>
-                        <a href="{{URL::to('dashboard/autotree/'.$root->id)}}"> {{$root->name}}  <br>{{$root->distributor_id}}  </a>
+                        <a href="{{URL::to('dashboard/tree/autotree/'.$root->id)}}"> {{$root->name}}  <br>{{$root->distributor_id}}  </a>
                         <ul>
                             <li>
-                                <a href="{{ ($left->id=='#')?'#':URL::to('dashboard/autotree/'.$left->id)}}">{{$left->name}} <br>{{$root->distributor_id}}</a>
+                                <a href="{{ ($left->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$left->id)}}">{{$left->name}} <br>{{$root->distributor_id}}</a>
                                 <ul>
-                                    <li><a href="{{($leftl->id=='#')?'#':URL::to('dashboard/autotree/'.$leftl->id)}}">{{$leftl->name}}</a></li>
-                                    <li><a href="{{($leftm->id=='#')?'#':URL::to('dashboard/autotree/'.$leftm->id)}}">{{$leftm->name}}</a></li>
-                                    <li><a href="{{($leftr->id=='#')?'#':URL::to('dashboard/autotree/'.$leftr->id)}}">{{$leftr->name}}</a></li>
+                                    <li><a href="{{($leftl->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$leftl->id)}}">{{$leftl->name}}</a></li>
+                                    <li><a href="{{($leftm->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$leftm->id)}}">{{$leftm->name}}</a></li>
+                                    <li><a href="{{($leftr->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$leftr->id)}}">{{$leftr->name}}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="{{($middle->id=='#')?'#':URL::to('dashboard/autotree/'.$middle->id)}}">{{$middle->name}}<br>{{$middle->distributor_id}} </a>
+                                <a href="{{($middle->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$middle->id)}}">{{$middle->name}}<br>{{$middle->distributor_id}} </a>
                                 <ul>
-                                    <li><a href="{{($middlel->id=='#')?'#':URL::to('dashboard/autotree/'.$middlel->id)}}">{{$middlel->name}}</a></li>
-                                    <li><a href="{{($middlem->id=='#')?'#':URL::to('dashboard/autotree/'.$middlem->id)}}">{{$middlem->name}}</a></li>
-                                    <li><a href="{{($middler->id=='#')?'#':URL::to('dashboard/autotree/'.$middler->id)}}">{{$middler->name}}</a></li>
+                                    <li><a href="{{($middlel->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$middlel->id)}}">{{$middlel->name}}</a></li>
+                                    <li><a href="{{($middlem->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$middlem->id)}}">{{$middlem->name}}</a></li>
+                                    <li><a href="{{($middler->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$middler->id)}}">{{$middler->name}}</a></li>
                                 </ul>
                             </li>
                             <li>
-                                <a href="{{($right->id=='#')?'#':URL::to('dashboard/autotree/'.$right->id)}}">{{$right->name}} <br>{{$right->distributor_id}} </a>
+                                <a href="{{($right->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$right->id)}}">{{$right->name}} <br>{{$right->distributor_id}} </a>
                                 <ul>
-                                    <li><a href="{{($rightl->id=='#')?'#':URL::to('dashboard/autotree/'.$rightl->id)}}">{{$rightl->name}}</a></li>
-                                    <li><a href="{{($rightm->id=='#')?'#':URL::to('dashboard/autotree/'.$rightm->id)}}">{{$rightm->name}}</a></li>
-                                    <li><a href="{{($rightr->id=='#')?'#':URL::to('dashboard/autotree/'.$rightr->id)}}">{{$rightr->name}}</a></li>
+                                    <li><a href="{{($rightl->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$rightl->id)}}">{{$rightl->name}}</a></li>
+                                    <li><a href="{{($rightm->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$rightm->id)}}">{{$rightm->name}}</a></li>
+                                    <li><a href="{{($rightr->id=='#')?'#':URL::to('dashboard/tree/autotree/'.$rightr->id)}}">{{$rightr->name}}</a></li>
                                 </ul>
                             </li>
                         </ul>

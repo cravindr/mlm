@@ -78,8 +78,8 @@ Route::group(['middleware' => ['guest']], function () {
         Route::get('node/test/{id}', 'NodeController@getParent1');
 
         //Tree
-        Route::get('tree/{id}', 'TreeController@index');
-        Route::get('autotree/{id}', 'TreeController@AutoTree');
+        Route::get('tree/tree/{id}', 'TreeController@index');
+        Route::get('tree/autotree/{id}', 'TreeController@AutoTree');
 
 
 

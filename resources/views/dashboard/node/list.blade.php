@@ -100,7 +100,9 @@
                         targets: 8,
                         data: null,
                         defaultContent: '<button id="btnedit" title="Edit" type="button" class="btn btn-primary btn-sm">' +
-                            '<i class="fa fa-edit" aria-hidden="true"></i></button>&nbsp;&nbsp;'
+                            '<i class="fa fa-edit" aria-hidden="true"></i></button>&nbsp;&nbsp;'+
+                            '<button id="btntree" title="View Tree" type="button" class="btn btn-dark btn-sm">' +
+                                '<i class="fa fa-tree" aria-hidden="true"></i></button>'
 
                     },
                     { data: 'f_name' },
@@ -134,6 +136,19 @@
                 if(data.status=='active'|| data.status=='inactive')
 
                     Edit(data.id);
+            } );
+
+            $('#nodetable tbody').on( 'click', '#btntree', function () {
+                var data = table.row($(this).parents('tr')).data();
+                if(data.status=='active'|| data.status=='inactive')
+                {
+                    var url="{{ URL::to('dashboard/tree/tree/')}}";
+                        var full_url=url+"/" +data.id;
+                       // alert(full_url);
+                    window.location.href=full_url;
+                }
+
+
             } );
 
             $('#nodetable tbody').on( 'click', '#btn-status', function () {

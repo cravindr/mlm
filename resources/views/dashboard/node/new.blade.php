@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline col-lg-3" >
                                     <input type="radio" value="others" class="validate[required] custom-control-input" id="gender_others" name="gender" data-errormessage-value-missing="Select Gender">
-                                    <label class="custom-control-label" for="gender_others">Others</label>
+                                    <label class="custom-control-label" for="gender_others">Transgender</label>
                                 </div>
                     </div>
                 </div>
