@@ -150,6 +150,10 @@ class NodeController extends Controller
     {
         return view('dashboard.node.list');
     }
+    public function treelist()
+    {
+        return view('dashboard.node.treelist');
+    }
     public function comissionlist()
     {
         return view('dashboard.node.comission_list');
@@ -173,6 +177,13 @@ class NodeController extends Controller
         $res = DB::select(DB::raw("SELECT * FROM `node`"));
         return datatables()->of($res)->toJson();
     }
+    public function NodeTreeServerSide()
+    {
+        $res = DB::select(DB::raw("SELECT `id`, `distributor_id`, `sponser_id`, `sponser_name`, `coupon_code`, `p`, `l`, `m`, `r`, `p_id`, `l_id`, `m_id`, `r_id`, `name`, `f_name`, `dob`, `sex`, `aadhar`, `pan`, `address`, `mobile`, `email`, `account_no`, `ifsc_code`, `bank_name`, `branch_name`, `nominee_name`, `nominee_relationship`,DATE_FORMAT( `cdate`, '%d-%m-%Y') as 'cdate', `status` FROM `node`"));
+        return datatables()->of($res)->toJson();
+    }
+
+
     public function ComissionServerSide($node_id)
     {
         $res = DB::select(DB::raw("select t.coupon,t.amount,t.cdate,n.name,t.status, n.distributor_id,n.id from transaction t join node n on( t.coupon=n.coupon_code) where t.node_id=$node_id"));

@@ -77,6 +77,7 @@ Route::post('newpassupdate', 'UserController@ResetPasswordUpdate');
         Route::post('node/activate', 'NodeController@NodeActivate');
         Route::get('node/test/{id}', 'NodeController@getParent1');
 
+
         Route::get('comission/comissionlist', 'NodeController@comissionlist');
         Route::get('comission/comission/{id}', 'NodeController@comission');
         Route::get('comissionserverside/{id}', 'NodeController@ComissionServerSide');
@@ -85,6 +86,8 @@ Route::post('newpassupdate', 'UserController@ResetPasswordUpdate');
         //Tree
         Route::get('tree/tree/{id}', 'TreeController@index');
         Route::get('tree/autotree/{id}', 'TreeController@AutoTree');
+        Route::get('tree/list', 'NodeController@treelist');
+        Route::get('nodetreeserverside', 'NodeController@NodeTreeServerSide');
 
 
 

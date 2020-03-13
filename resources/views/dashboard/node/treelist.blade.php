@@ -1,16 +1,9 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Node List')
+@section('title', 'Tree List')
 
 @section('pagecontent')
-    <div class="row mb-2">
-        <div class="col-lg-1">
-            <a href="{{ URL::to('/dashboard/node/create') }}"  class="btn btn-outline-primary"
 
-            >Create Node
-            </a>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md-12">
             <!-- DATA TABLE -->
@@ -27,7 +20,7 @@
                         <th>Coupon Code</th>
                         <th>Date</th>
                         <th>Status</th>
-                        <th width="2%">Action</th>
+                        <th width="1%">Action</th>
 
                         <th>F Name</th>
                         <th>Aadhar</th>
@@ -59,7 +52,7 @@
                 "order": [[ 0, "desc" ]],
                 "processing": true,
                 "serverSide": true,
-                ajax: '{{ URL::to('/dashboard/nodeserverside') }}',
+                ajax: '{{ URL::to('/dashboard/nodetreeserverside') }}',
                 columns: [
                     { data: 'id' },
                     { data: 'name' },
@@ -68,6 +61,10 @@
                     { data: 'sponser_id' },
                     { data: 'coupon_code' },
                     { data: 'cdate' },
+
+
+
+
                     {
                         data: 'status',
                         targets:7,
@@ -99,9 +96,9 @@
                     {
                         targets: 8,
                         data: null,
-                        defaultContent: '<button id="btnedit" title="Edit" type="button" class="btn btn-primary btn-sm">' +
-                            '<i class="fa fa-edit" aria-hidden="true"></i></button>&nbsp;&nbsp;'
-
+                        defaultContent:
+                            '<button id="btntree" title="View Tree" type="button" class="btn btn-dark btn-sm">' +
+                                '<i class="fa fa-tree" aria-hidden="true"></i></button>'
 
                     },
                     { data: 'f_name' },

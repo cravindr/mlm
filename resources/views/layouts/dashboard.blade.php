@@ -36,7 +36,7 @@
                     </li>
                     <li class="has-sub">
                         <a class="js-arrow open" href="#">
-                            <i class="fas fa-copy"></i>Coupon</a>
+                            <i class="fas fa-tag"></i>Coupon</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'coupon' ? 'block' : 'none' }};">
                             <li class="{{ (Request::segment(2) == 'coupon' && Request::segment(3)=='') ? 'active' : '' }}">
                                 <a href="{{ URL::to('/dashboard/coupon') }}">
@@ -54,7 +54,7 @@
 
                     <li class="has-sub">
                         <a class="js-arrow open" href="#">
-                            <i class="fas fa-copy"></i>Node</a>
+                            <i class="fab fa-linode"></i>Node</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'node' ? 'block' : 'none' }};">
                             <li class="{{ (Request::segment(2) == 'node' && Request::segment(3)=='create') ? 'active' : '' }}">
                                 <a href="{{ URL::to('/dashboard/node/create') }}">
@@ -70,15 +70,19 @@
 
                     <li class="has-sub">
                         <a class="js-arrow open" href="#">
-                            <i class="fas fa-copy"></i>Tree</a>
+                            <i class="fas fa-tree"></i>Tree</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'tree' ? 'block' : 'none' }};">
                             <li class="{{ (Request::segment(2) == 'tree' && Request::segment(3)=='tree') ? 'active' : '' }}">
                                 <a href="{{ URL::to('/dashboard/tree/tree/1') }}">
-                                    <i class="fa fa-plus"></i>View</a>
+                                    <i class="fa fa-eye"></i>View</a>
                             </li>
                             <li class="{{ (Request::segment(2) == 'tree' && Request::segment(3) == 'autotree') ? 'active' : '' }}">
                                 <a href="{{ URL::to('/dashboard/tree/autotree/1') }}">
-                                    <i class="fa fa-list"></i>Auto</a>
+                                    <i class="fab fa-autoprefixer"></i>Auto</a>
+                            </li>
+                            <li class="{{ (Request::segment(2) == 'tree' && Request::segment(3) == 'list') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/tree/list') }}">
+                                    <i class="fa fa-list"></i>List</a>
                             </li>
 
                         </ul>
@@ -89,7 +93,7 @@
                     </li>--}}
                     <li class="has-sub">
                         <a class="js-arrow open" href="#">
-                            <i class="fas fa-copy"></i>Comission</a>
+                            <i class="fas fa-rupee-sign"></i>Comission</a>
                         <ul class="list-unstyled navbar__sub-list js-sub-list" style="display: {{ Request::segment(2) == 'comission' ? 'block' : 'none' }};">
                             <li class="{{ (Request::segment(2) == 'comission' && Request::segment(3)=='comissionlist') ? 'active' : '' }}">
                                 <a href="{{ URL::to('/dashboard/comission/comissionlist') }}">
@@ -99,6 +103,10 @@
                                 <a href="{{ URL::to('/dashboard/comission/couponcomissionlist/') }}">
                                     <i class="fa fa-tag"></i>Coupon</a>
                             </li>
+
+
+
+
 
                         </ul>
                     </li>
