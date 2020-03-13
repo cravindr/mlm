@@ -150,10 +150,26 @@ class NodeController extends Controller
     {
         return view('dashboard.node.list');
     }
+    public function comissionlist()
+    {
+        return view('dashboard.node.comission_list');
+    }
+    public function comission()
+    {
+        $id=\request()->id;
+        return view('dashboard.node.comission')->with('id',$id);
+    }
+
+
 
     public function NodeServerSide()
     {
         $res = DB::select(DB::raw("SELECT * FROM `node`"));
+        return datatables()->of($res)->toJson();
+    }
+    public function ComissionServerSide($node_id)
+    {
+        $res = DB::select(DB::raw("select t.coupon,t.amount,t.cdate,n.name,t.status, n.distributor_id,n.id from transaction t join node n on( t.coupon=n.coupon_code) where t.node_id=$node_id"));
         return datatables()->of($res)->toJson();
     }
 

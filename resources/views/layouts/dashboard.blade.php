@@ -81,9 +81,11 @@
                                     <i class="fa fa-list"></i>Auto</a>
                             </li>
 
-
-
                         </ul>
+                    </li>
+                    <li class="{{ Request::segment(3) == 'comissionlist' ? 'active' : '' }}">
+                        <a href="{{ URL::to('/dashboard/node/comissionlist/') }}">
+                            <i class="fa fa-user-plus"></i>Comission</a>
                     </li>
 
                 </ul>

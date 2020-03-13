@@ -76,6 +76,9 @@ Route::group(['middleware' => ['guest']], function () {
         Route::post('node/deactivate', 'NodeController@NodeDeactivate');
         Route::post('node/activate', 'NodeController@NodeActivate');
         Route::get('node/test/{id}', 'NodeController@getParent1');
+        Route::get('node/comissionlist', 'NodeController@comissionlist');
+        Route::get('node/comission/{id}', 'NodeController@comission');
+        Route::get('comissionserverside/{id}', 'NodeController@ComissionServerSide');
 
         //Tree
         Route::get('tree/tree/{id}', 'TreeController@index');
