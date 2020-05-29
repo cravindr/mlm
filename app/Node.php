@@ -81,7 +81,7 @@ from node
         else {
 
             $res = DB::table('node')->select('id', 'distributor_id', 'sponser_name', 'p', 'p_id', 'name', 'coupon_code')->where('id', $id)->first();
-            echo "<br>" . $res->p_id . " : $res->p ,$init";
+           // echo "<br>" . $res->p_id . " : $res->p ,$init";
 
 
             $amount = 0;
@@ -112,6 +112,53 @@ from node
             }
             //print_r("test value <pre>".$res);
             self::setParentCommision($res->p, $init, $cupon_code);
+
+        }
+
+    }
+    public static function setAutoParentCommision($id, $init = 0,$cupon_code=0)
+    {
+        $init++;
+
+        if ($id == '') {
+            return 1;
+        }
+        else {
+
+            $res = DB::table('auto_node')->select('id', 'distributor_id', 'sponser_name', 'p', 'p_id', 'name', 'coupon_code')->where('id', $id)->first();
+            // echo "<br>" . $res->p_id . " : $res->p ,$init";
+
+
+            $amount = 0;
+            if ($init == 1) {
+                $amount = 0;
+            } elseif ($init == 2) {
+                $amount = 0;
+            } elseif ($init == 3) {
+                $amount = 0;
+            } elseif ($init == 4) {
+                $amount = 0;
+            } elseif ($init == 5) {
+                $amount = 0;
+            }elseif ($init == 6) {
+                $amount = 80;
+            }
+
+
+            if ($amount >= 80) {
+                $data = [
+                    'node_id' => $res->p,
+                    'node_code' => $res->p_id,
+                    'node_name' => $res->sponser_name,
+                    'coupon' => $cupon_code,
+                    'amount' => $amount,
+                    'status' => 'credit'
+                ];
+
+                DB::table('autotransaction')->insert($data);
+            }
+            //print_r("test value <pre>".$res);
+            self::setAutoParentCommision($res->p, $init, $cupon_code);
 
         }
 
@@ -642,9 +689,238 @@ from node
 
     }
 
+    public function GetTreeCompleteNodeValue($parentNode,$mode,$height)
+    {
+        return $parentNode*(pow($mode,$height)) +((pow($mode,$height)-1)/($mode-1));
+    }
+
+
+    public function FillAutoNodeTreeTable($treeLevel)
+    {
+        for ($i = 1; $i <= $treeLevel; $i++) {
+            echo $i . "  : " . $this->GetTreeCompleteNodeValue($i, 3, 6) . "<br>";
+            {
+                $data = [
+                    'node' => $i,
+                    'value' => $this->GetTreeCompleteNodeValue($i, 3, 6)
+                ];
+                DB::table('auto_tree_value')->insert($data);
+            }
+        }
+    }
+
+    public function FillSilverNodeTreeTable($treeLevel)
+    {
+        for ($i = 1; $i <= $treeLevel; $i++) {
+            echo $i . "  Silver Level value : " . $this->GetTreeCompleteNodeValue($i, 3, 3) . "<br>";
+            {
+                $data = [
+                    'node' => $i,
+                    'value' => $this->GetTreeCompleteNodeValue($i, 3, 3)
+                ];
+                DB::table('silver_tree_value')->insert($data);
+            }
+        }
+    }
+
+    public function FillGoldNodeTreeTable($treeLevel)
+    {
+        for ($i = 1; $i <= $treeLevel; $i++) {
+            echo $i . " Gold Level value : " . $this->GetTreeCompleteNodeValue($i, 3, 2) . "<br>";
+            {
+                $data = [
+                    'node' => $i,
+                    'value' => $this->GetTreeCompleteNodeValue($i, 3, 2)
+                ];
+                DB::table('gold_tree_value')->insert($data);
+            }
+        }
+    }
+
+    public  function AutoNodePayoutEligibulity($id)
+    {
+        $res = DB::table('auto_tree_value')->select('id', 'node')->where('value', $id)->first();
+        if($res)
+        {
+
+            //return $res->node;
+           $this->AutoNodePayout($res->node);
+        }
+    }
+
+    public function SilverNodePayoutEligibulity($id)
+    {
+        $res = DB::table('silver_tree_value')->select('id', 'node')->where('value', $id)->first();
+        if($res)
+        {
+            //return $res->node;
+            $this->SilverNodePayout($res->node);
+        }
+    }
+    public function GoldNodePayoutEligibulity($id)
+    {
+        $res = DB::table('gold_tree_value')->select('id', 'node')->where('value', $id)->first();
+        if($res)
+        {
+            //return $res->node;
+            $this->GoldNodePayout($res->node);
+        }
+    }
+
+    public function AutoNodePayout($id)
+    {
+
+        $res=DB::table('auto_node')->where('id', $id)->first();
+        if($res)
+        {
+            $node_code=$res->distributor_id;
+            $node_name=$res->name;
+            $coupon=$res->coupon_code;
 
 
 
+            $fulldata=json_decode(json_encode($res),true); // convert object to array
+            unset($fulldata['id'],$fulldata['cdate']);   // to remove unwanted key fields like id and cdate
+            $id=DB::table('silver_node')->insertGetId($fulldata) ;
+
+            $data=[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>$coupon,
+                'amount'=>58320,
+                'status'=>'credit'
+            ];
+
+            $dataSilvarId=[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>'SILVER-ID-COST',
+                'amount'=>4000,
+                'status'=>'debit'
+            ];
+            $dataSilvarReg =[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>'SILVER-REG-FEE',
+                'amount'=>4320,
+                'status'=>'debit'
+            ];
+
+            DB::table('auto_transaction')->insert($data);
+            DB::table('auto_transaction')->insert($dataSilvarId);
+            DB::table('auto_transaction')->insert($dataSilvarReg);
+
+            //return $id;
+            $this->SilverNodePayoutEligibulity($id);
+        }
+
+
+    }
+    public function SilverNodePayout($id)
+    {
+
+        $res=DB::table('silver_node')->where('id', $id)->first();
+        if($res)
+        {
+            $node_code=$res->distributor_id;
+            $node_name=$res->name;
+            $coupon=$res->coupon_code;
+
+
+
+            $fulldata=json_decode(json_encode($res),true); // convert object to array
+            unset($fulldata['id'],$fulldata['cdate']);   // to remove unwanted key fields like id and cdate
+            $id=DB::table('gold_node')->insertGetId($fulldata) ;
+
+            $data=[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>$coupon,
+                'amount'=>108000,
+                'status'=>'credit'
+            ];
+
+            $dataGoldId=[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>'GOLD-ID-COST',
+                'amount'=>8000,
+                'status'=>'debit'
+            ];
+            $dataGoldReg =[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>'GOLD-REG-FEE',
+                'amount'=>2000,
+                'status'=>'debit'
+            ];
+
+            DB::table('silver_transaction')->insert($data);
+            DB::table('silver_transaction')->insert($dataGoldId);
+            DB::table('silver_transaction')->insert($dataGoldReg);
+
+            //return $id;
+            $this->GoldNodePayoutEligibulity($id);
+        }
+
+
+    }
+    public function GoldNodePayout($id)
+    {
+
+        $res=DB::table('gold_node')->where('id', $id)->first();
+        if($res)
+        {
+            $node_code=$res->distributor_id;
+            $node_name=$res->name;
+            $coupon=$res->coupon_code;
+
+
+
+            //$fulldata=json_decode(json_encode($res),true); // convert object to array
+            //unset($fulldata['id'],$fulldata['cdate']);   // to remove unwanted key fields like id and cdate
+            //$id=DB::table('gold_node')->insertGetId($fulldata) ;
+
+            $data=[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>$coupon,
+                'amount'=>72000,
+                'status'=>'credit'
+            ];
+/*
+            $dataGoldId=[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>'GOLD-ID-COST',
+                'amount'=>8000,
+                'status'=>'debit'
+            ];
+            $dataGoldReg =[
+                'node_id'=>$id,
+                'node_code'=>$node_code,
+                'node_name'=>$node_name,
+                'coupon'=>'GOLD-REG-FEE',
+                'amount'=>2000,
+                'status'=>'debit'
+            ];*/
+
+            DB::table('gold_transaction')->insert($data);
+           /* DB::table('silver_transaction')->insert($dataGoldId);
+            DB::table('silver_transaction')->insert($dataGoldReg);*/
+
+        }
+
+
+    }
 
 
 }

@@ -2,8 +2,11 @@
 
 @section('additional-css')
     @if(Request::segment(2) != '' && Request::segment(2) != 'profile' && Request::segment(2) != 'passwordchange')
-        <link href="{{ asset('assets/vendor/DataTables/DataTables-1.10.18/css/jquery.dataTables.min.css') }}" rel="stylesheet" media="all">
-      <link href="{{ asset('assets/vendor/DataTables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" media="all">
+        <link href="{{ asset('assets/vendor/DataTables/Datatable-1.10.21/DataTables-1.10.21/css/jquery.dataTables.min.css') }}" rel="stylesheet" media="all">
+        <link href="{{ asset('assets/vendor/DataTables/Datatable-1.10.21/Responsive-2.2.5/css/responsive.bootstrap.min.css') }}" rel="stylesheet" media="all">
+       <link href="{{ asset('assets/vendor/DataTables/Datatable-1.10.21/DataTables-1.10.21/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" media="all">
+
+        {{--<script src="public/assets/vendor/DataTables/Datatable-1.10.21/Responsive-2.2.5/js/dataTables.responsive.min.js"></script>--}}
         {{--<link href="{{ asset('assets/vendor/DataTables/DataTables-1.10.18/css/dataTables.bootstrap.css') }}" rel="stylesheet" media="all">--}}
     @endif
 
@@ -195,8 +198,12 @@
 
 @section('additional-js')
     @if(Request::segment(2) != '' && Request::segment(2) != 'profile' && Request::segment(2) != 'passwordchange')
-        <script src="{{ asset('assets/vendor/DataTables/DataTables-1.10.18/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('assets/vendor/DataTables/DataTables-1.10.18/js/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/vendor/DataTables/Datatable-1.10.21/DataTables-1.10.21/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/vendor/DataTables/Datatable-1.10.21/Responsive-2.2.5/js/dataTables.responsive.min.js') }}" type="text/javascript"></script>
+
+        {{--<script src="public/assets/vendor/DataTables/Datatable-1.10.21/DataTables-1.10.21/js/jquery.dataTables.min.js"></script>--}}
+        {{--<script src="{{ asset('assets/vendor/DataTables/DataTables-1.10.21/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>--}}
+        <script src="{{ asset('assets/vendor/DataTables/Datatable-1.10.21/DataTables-1.10.21/js/dataTables.bootstrap4.min.js') }}" type="text/javascript"></script>
         @yield('datatables-scripts')
     @endif
 

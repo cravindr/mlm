@@ -353,6 +353,9 @@ class NodeController extends Controller
             $coupon_update = Coupon::UseCoupon($node_data['coupon_code']);
 
             Node::setParentCommision($res, 0, $req['couponcode']);
+            $newNode= new Node();
+            $newNode->AutoNodePayoutEligibulity($res_auto);
+
             echo "User Alloted : $user_alot  & Coupon Update:$coupon_update";
 
 
@@ -408,6 +411,22 @@ class NodeController extends Controller
     {
         $id = \request()->id;
         Node::getParentList($id);
+    }
+
+    public function setTreeValues()
+    {
+        // master table setup.. no furher use in project
+        $no= new Node();
+        $no->FillAutoNodeTreeTable(10000);
+        $no->FillSilverNodeTreeTable(10000);
+        $no->FillGoldNodeTreeTable(10000);
+
+
+    }
+    public function testInsert()
+    {
+        $test=new Node();
+        $test->AutoNodePayout();
     }
 }
 

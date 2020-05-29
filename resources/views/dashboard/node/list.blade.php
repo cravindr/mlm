@@ -15,7 +15,7 @@
         <div class="col-md-12">
             <!-- DATA TABLE -->
             <div class="table-responsive table-responsive-data2">
-                <table id="nodetable" width="100%" class="table table-striped table-bordered">
+                <table id="nodetable" width="100%" class="table table-striped table-bordered responsive nowrap">
                     <thead>
                     <tr>
                         <th>Id</th>

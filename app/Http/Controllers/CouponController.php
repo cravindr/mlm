@@ -60,7 +60,17 @@ class CouponController extends Controller
 
     public function CouponServerSide()
     {
-        $res = DB::select(DB::raw("SELECT * FROM `coupon`"));
+        $res = DB::select(DB::raw("SELECT id,
+                                                gen_id,
+                                                code,
+                                                coupon_code,
+
+                                                DATE_FORMAT( `c_date`, '%d-%m-%Y') as 'c_date',
+                                                name,
+                                                mobile,
+                                                email,
+                                                comments,
+                                                status FROM `coupon`"));
         return datatables()->of($res)->toJson();
     }
 
