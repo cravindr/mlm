@@ -24,9 +24,9 @@
                         <th>Distributor Code</th>
                         <th>Sponser Name</th>
                         <th>Sponser Code</th>
-                        <th>Coupon Code</th>
+                        <th width="5%">Coupon Code</th>
                         <th>Date</th>
-                        <th>Status</th>
+                        <th width="5%">Status</th>
                         <th width="2%">Action</th>
 
                         <th>F Name</th>
@@ -62,10 +62,23 @@
                 ajax: '{{ URL::to('/dashboard/nodeserverside') }}',
                 columns: [
                     { data: 'id' },
-                    { data: 'name' },
+                    { data: 'name',
+                    targets:1,
+                        render: function ( data, type, row, meta ) {
+
+                                 return data.substring(0, 15);
+
+                    }
+                    },
                     { data: 'distributor_id' },
-                    { data: 'sponser_name' },
-                    { data: 'sponser_id' },
+                    { data: 'sponser_name',
+                        targets:3,
+                        render: function ( data, type, row, meta ) {
+
+                            return data.substring(0, 15);
+
+                        }  },
+                    { data: 'sponser_id'},
                     { data: 'coupon_code' },
                     { data: 'cdate' },
                     {
@@ -131,7 +144,13 @@
 
 
             $('#nodetable tbody').on( 'click', '#btnedit', function () {
-                var data = table.row($(this).parents('tr')).data();
+               // var data = table.row($(this).parents('tr')).data();  // non responsive method
+                var current_row = $(this).parents('tr');//Get the current row
+                if (current_row.hasClass('child')) {//Check if the current row is a child row
+                    current_row = current_row.prev();//If it is, then point to the row before it (its 'parent')
+                }
+                var data = table.row(current_row).data();//At this point, current_row refers to a valid row in the table, whether is a child row (collapsed by the DataTable's responsiveness) or a 'normal' row
+
                 if(data.status=='active'|| data.status=='inactive')
 
                     Edit(data.id);
@@ -151,7 +170,13 @@
             } );
 
             $('#nodetable tbody').on( 'click', '#btn-status', function () {
-                var data = table.row($(this).parents('tr')).data();
+                //var data = table.row($(this).parents('tr')).data();  // non responsive method
+                var current_row = $(this).parents('tr');//Get the current row
+                if (current_row.hasClass('child')) {//Check if the current row is a child row
+                    current_row = current_row.prev();//If it is, then point to the row before it (its 'parent')
+                }
+                var data = table.row(current_row).data();//At this point, current_row refers to a valid row in the table, whether is a child row (collapsed by the DataTable's responsiveness) or a 'normal' row
+
                 //alert(data.coupon_code);
                 if(data.status=='active')
                 {

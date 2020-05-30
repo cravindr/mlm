@@ -51,8 +51,10 @@ Route::post('newpassupdate', 'UserController@ResetPasswordUpdate');
         //coupon
         Route::get('coupon', 'CouponController@index');
         Route::get('coupon/list', 'CouponController@list');
+        Route::get('coupon/listactive', 'CouponController@listActive');
         Route::post('coupon/save', 'CouponController@save');
         Route::get('couponserverside', 'CouponController@CouponServerSide');
+        Route::get('couponactiveserverside', 'CouponController@CouponActiveServerSide');
         Route::post('coupon/deactivate', 'CouponController@CouponDeactivate');
         Route::post('coupon/activate', 'CouponController@CouponActivate');
         Route::post('coupon/delete', 'CouponController@CouponDelete');

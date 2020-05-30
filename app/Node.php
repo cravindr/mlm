@@ -83,40 +83,49 @@ from node
             $res = DB::table('node')->select('id', 'distributor_id', 'sponser_name', 'p', 'p_id', 'name', 'coupon_code')->where('id', $id)->first();
            // echo "<br>" . $res->p_id . " : $res->p ,$init";
 
+            if($res)
+            {
+                if($res->p >0)
+                {
+                    $amount = 0;
+                    if ($init == 1) {
+                        $amount = 300;
+                    } elseif ($init == 2) {
+                        $amount = 200;
+                    } elseif ($init == 3) {
+                        $amount = 100;
+                    } elseif ($init == 4) {
+                        $amount = 50;
+                    } elseif ($init == 5) {
+                        $amount = 20;
+                    }
 
-            $amount = 0;
-            if ($init == 1) {
-                $amount = 300;
-            } elseif ($init == 2) {
-                $amount = 200;
-            } elseif ($init == 3) {
-                $amount = 100;
-            } elseif ($init == 4) {
-                $amount = 50;
-            } elseif ($init == 5) {
-                $amount = 20;
+
+                    if ($amount >= 20) {
+                        $data = [
+                            'node_id' => $res->p,
+                            'node_code' => $res->p_id,
+                            'node_name' => $res->sponser_name,
+                            'coupon' => $cupon_code,
+                            'amount' => $amount,
+                            'status' => 'credit'
+                        ];
+
+                        DB::table('transaction')->insert($data);
+
+
+                    }
+                    //print_r("test value <pre>".$res);
+                    self::setParentCommision($res->p, $init, $cupon_code);
+                }
             }
 
 
-            if ($amount >= 20) {
-                $data = [
-                    'node_id' => $res->p,
-                    'node_code' => $res->p_id,
-                    'node_name' => $res->sponser_name,
-                    'coupon' => $cupon_code,
-                    'amount' => $amount,
-                    'status' => 'credit'
-                ];
-
-                DB::table('transaction')->insert($data);
-            }
-            //print_r("test value <pre>".$res);
-            self::setParentCommision($res->p, $init, $cupon_code);
 
         }
 
     }
-    public static function setAutoParentCommision($id, $init = 0,$cupon_code=0)
+    /*public static function setAutoParentCommision($id, $init = 0,$cupon_code=0)
     {
         $init++;
 
@@ -162,7 +171,7 @@ from node
 
         }
 
-    }
+    }*/
 
     public static function getParentList($id, $init = 0)
     {
@@ -643,51 +652,62 @@ from node
         }
     }
 
-    public static function setAutoNodeParentCommision($id, $init = 0,$cupon_code=0)
+    /*public static function setAutoNodeParentCommision($id, $init = 0,$cupon_code=0)
     {
         $init++;
 
         if ($id == '') {
             return 1;
         }
-        else {
+        else
+            {
 
             $res = DB::table('node')->select('id', 'distributor_id', 'sponser_name', 'p', 'p_id', 'name', 'coupon_code')->where('id', $id)->first();
-            echo "<br>" . $res->p_id . " : $res->p ,$init";
+
+                if ($res) {
+                    if ($res->p >= 1)
+                    {
+                        $amount = 0;
+                        if ($init == 1) {
+                            $amount = 300;
+                        } elseif ($init == 2) {
+                            $amount = 200;
+                        } elseif ($init == 3) {
+                            $amount = 100;
+                        } elseif ($init == 4) {
+                            $amount = 50;
+                        } elseif ($init == 5) {
+                            $amount = 20;
+                        }
 
 
-            $amount = 0;
-            if ($init == 1) {
-                $amount = 300;
-            } elseif ($init == 2) {
-                $amount = 200;
-            } elseif ($init == 3) {
-                $amount = 100;
-            } elseif ($init == 4) {
-                $amount = 50;
-            } elseif ($init == 5) {
-                $amount = 20;
-            }
+                        if ($amount >= 20) {
+                            $data = [
+                                'node_id' => $res->p,
+                                'node_code' => $res->p_id,
+                                'node_name' => $res->sponser_name,
+                                'coupon' => $cupon_code,
+                                'amount' => $amount,
+                                'status' => 'credit'
+                            ];
+
+                           // DB::table('transaction')->insert($data);
+                            echo "<pre>";
+                            echo "<br>" . $res->p_id . " : $res->p ,$init  amount $amount";
+                            print_r($data);
+                            echo "<br>";
+
+                        }
+                        //print_r("test value <pre>".$res);
+                        self::setAutoNodeParentCommision($res->p, $init, $cupon_code);
+                    }
 
 
-            if ($amount >= 20) {
-                $data = [
-                    'node_id' => $res->p,
-                    'node_code' => $res->p_id,
-                    'node_name' => $res->sponser_name,
-                    'coupon' => $cupon_code,
-                    'amount' => $amount,
-                    'status' => 'credit'
-                ];
-
-                DB::table('transaction')->insert($data);
-            }
-            //print_r("test value <pre>".$res);
-            self::setAutoNodeParentCommision($res->p, $init, $cupon_code);
-
+                }
         }
 
-    }
+
+    }*/
 
     public function GetTreeCompleteNodeValue($parentNode,$mode,$height)
     {

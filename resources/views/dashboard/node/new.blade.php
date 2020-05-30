@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Coupon')
+@section('title', 'Node Create')
 
 @section('pagecontent')
 

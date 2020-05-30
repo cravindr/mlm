@@ -47,7 +47,12 @@
                             </li>
                             <li class="{{ (Request::segment(2) == 'coupon' && Request::segment(3) == 'list') ? 'active' : '' }}">
                                 <a href="{{ URL::to('/dashboard/coupon/list') }}">
-                                    <i class="fa fa-list"></i>List</a>
+                                   {{-- <i class="fa fa-list"></i>List</a>--}}
+                                    <i class="fas fa-th-list"></i>List</a>
+                            </li>
+                            <li class="{{ (Request::segment(2) == 'coupon' && Request::segment(3) == 'listactive') ? 'active' : '' }}">
+                                <a href="{{ URL::to('/dashboard/coupon/listactive') }}">
+                                    <i class="fas fa-list-ol"></i>Active</a>
                             </li>
 
 

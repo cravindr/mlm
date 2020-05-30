@@ -174,7 +174,8 @@ class NodeController extends Controller
 
     public function NodeServerSide()
     {
-        $res = DB::select(DB::raw("SELECT * FROM `node`"));
+        //$res = DB::select(DB::raw("SELECT * FROM `node`"));
+        $res = DB::select(DB::raw("SELECT `id`, `distributor_id`, `sponser_id`, `sponser_name`, `coupon_code`, `p`, `l`, `m`, `r`, `p_id`, `l_id`, `m_id`, `r_id`, `name`, `f_name`, `dob`, `sex`, `aadhar`, `pan`, `address`, `mobile`, `email`, `account_no`, `ifsc_code`, `bank_name`, `branch_name`, `nominee_name`, `nominee_relationship`,DATE_FORMAT( `cdate`, '%d-%m-%Y') as 'cdate', `status` FROM `node`"));
         return datatables()->of($res)->toJson();
     }
     public function NodeTreeServerSide()
@@ -410,7 +411,8 @@ class NodeController extends Controller
     public function getParent1()
     {
         $id = \request()->id;
-        Node::getParentList($id);
+       // Node::getParentList($id);
+       Node::setParentCommision($id);
     }
 
     public function setTreeValues()

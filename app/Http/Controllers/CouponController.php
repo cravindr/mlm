@@ -23,6 +23,10 @@ class CouponController extends Controller
     {
         return view('dashboard.coupon.list');
     }
+    public function listActive()
+    {
+        return view('dashboard.coupon.list_active');
+    }
 
     public function save(Request $request)
     {
@@ -71,6 +75,21 @@ class CouponController extends Controller
                                                 email,
                                                 comments,
                                                 status FROM `coupon`"));
+        return datatables()->of($res)->toJson();
+    }
+    public function CouponActiveServerSide()
+    {
+        $res = DB::select(DB::raw("SELECT id,
+                                                gen_id,
+                                                code,
+                                                coupon_code,
+
+                                                DATE_FORMAT( `c_date`, '%d-%m-%Y') as 'c_date',
+                                                name,
+                                                mobile,
+                                                email,
+                                                comments,
+                                                status FROM `coupon` where status='active'"));
         return datatables()->of($res)->toJson();
     }
 

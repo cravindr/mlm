@@ -1,7 +1,15 @@
 @extends('layouts.dashboard')
 
 @section('title', 'Comission List')
-
+@section('additional-css')
+    <style>
+        tfoot input {
+            width: 100%;
+            padding: 1px;
+            box-sizing: border-box;
+        }
+    </style>
+@endsection
 @section('pagecontent')
 
     <div class="row">
@@ -32,6 +40,27 @@
                         <th>Nominee Name</th>
                     </tr>
                     </thead>
+                    <tfoot>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Distributor Code</th>
+                    <th>Sponser Name</th>
+                    <th>Sponser Code</th>
+                    <th>Coupon Code</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th width="2%">Action</th>
+
+                    <th>F Name</th>
+                    <th>Aadhar</th>
+                    <th>PAN</th>
+                    <th>Address</th>
+                    <th>Mobile</th>
+                    <th>Email</th>
+                    <th>Acc.No</th>
+                    <th>Bank Name</th>
+                    <th>Nominee Name</th>
+                    </tfoot>
                 </table>
             </div>
             <!-- END DATA TABLE -->
@@ -47,6 +76,14 @@
     <script>
         $(document).ready(function() {
             $("#pass-update").validationEngine();
+
+            // Setup - add a text input to each footer cell
+            $('#nodetable tfoot th').each( function () {
+                var title = $(this).text();
+                $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+
+            } );
+
             var table = $('#nodetable').DataTable({
                 "order": [[ 0, "desc" ]],
                 "processing": true,
@@ -119,7 +156,21 @@
                     { "visible": false, "targets": 15 },
                     { "visible": false, "targets": 16 },
                     { "visible": false, "targets": 17 }
-                ]
+                ],initComplete: function () {
+                    // Apply the search
+                    this.api().columns().every( function () {
+                        var that = this;
+
+                        $( 'input', this.footer() ).on( 'keyup change clear', function () {
+                            if ( that.search() !== this.value ) {
+                                that
+                                    .search( this.value )
+                                    .draw();
+                            }
+                        } );
+                    } );
+                }
+
             });
 
 
